@@ -10,6 +10,7 @@ packages:
   - dnf: chromium
   - dnf: git
   - dnf: thunderbird
+  - dnf: thunderbird-enigmail
   - dnf: thefuck
   - dnf: virt-manager
   - dnf: virt-viewer
