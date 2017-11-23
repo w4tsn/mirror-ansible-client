@@ -1,0 +1,4 @@
+---
+# tasks file for gitkraken
+
+- include_tasks: fedora.yml

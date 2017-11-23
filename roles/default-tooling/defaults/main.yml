@@ -17,4 +17,5 @@ packages:
   - dnf: keepass
   - dnf: ansible
   - dnf: telegram-desktop
+  - dnf: flatpak
 

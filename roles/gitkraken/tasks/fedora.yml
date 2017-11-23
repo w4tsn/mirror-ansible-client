@@ -1,0 +1,28 @@
+---
+# Fedora setup for GitKraken
+
+- name: Check that GitKraken is installed
+  stat:
+    path: "{{ gitkraken_install_path }}"
+  register: gitkraken_dir
+
+
+- name: Download GitKraken
+  get_url: 
+    url: "{{ gitkraken_download_url }}"
+    dest: "{{ gitkraken_download_path }}"
+  when: gitkraken_dir.stat.exists == False
+
+- name: Unpack GitKraken
+  unarchive:
+    src: "{{ gitkraken_download_path }}"
+    dest: "{{ gitkraken_install_path }}"
+    remote_src: yes
+  become: yes
+  when: gitkraken_dir.stat.exists == False
+
+- name: Create desktop entry
+  template:
+    src: gitkraken.desktop
+    dest: /usr/share/applications/gitkraken.desktop
+  become: yes
