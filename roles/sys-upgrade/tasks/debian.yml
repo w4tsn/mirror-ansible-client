@@ -1,0 +1,9 @@
+---
+# tasks file for sys-upgrade
+
+- name: Upgrade all packages (Debian-based)
+  apt:
+    name: "*"
+    state: latest
+  become: true
+

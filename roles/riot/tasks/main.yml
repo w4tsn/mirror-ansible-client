@@ -1,0 +1,18 @@
+---
+# tasks file for riot
+
+
+- name: Enable COPR
+  command: "dnf copr enable -y taw/Riot"
+  args:
+    creates: /etc/yum.repos.d/_copr_taw-Riot.repo
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+  become: true
+
+- name: Install Riot
+  dnf:
+    name: riot
+    state: present
+  become: true

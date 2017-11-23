@@ -1,0 +1,8 @@
+---
+# tasks file for sys-upgrade
+
+- name: Upgrade all packages (RedHat-common)
+  yum:
+    name: "*"
+    state: latest
+  become: true

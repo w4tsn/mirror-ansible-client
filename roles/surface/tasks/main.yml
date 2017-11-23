@@ -1,0 +1,16 @@
+---
+# tasks file for surface
+
+- stat: path=/etc/NetworkManager/conf.d/
+  register: networkmanager_confd
+
+- name: Disable Network manager MAC randomization on Surface
+  template:
+    src: networkmanager.conf
+    dest: /etc/NetworkManager/conf.d/zz_surface.conf
+  when:
+    - ansible_product_name == "Surface Pro 3"
+    - networkmanager_confd.stat.exists == true
+  notify:
+    - restart NetworkManager
+  become: true

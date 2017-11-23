@@ -1,0 +1,12 @@
+---
+# handlers file for automated-updates
+
+- name: restart dnf-automatic
+  service:
+    name: dnf-automatic.timer
+    state: restarted
+    enabled: yes
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+  become: true

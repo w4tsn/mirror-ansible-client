@@ -1,0 +1,10 @@
+---
+# tasks file for automated-updates
+
+- name: Install dnf-automatic
+  dnf:
+    name: dnf-automatic
+    state: present
+  notify: 
+    - restart dnf-automatic
+  become: true

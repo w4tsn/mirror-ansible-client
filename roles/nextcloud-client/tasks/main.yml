@@ -1,0 +1,36 @@
+---
+# tasks file for nextcloud-client
+
+- name: Install SELinux dependencies
+  dnf:
+    name: libselinux-python
+    state: present
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+    - ansible_selinux_python_present == false
+  become: true
+
+- name: Install Nextcloud
+  dnf:
+    name: "nextcloud-client"
+    state: present
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+  become: true
+
+- name: Preconfigure Nextcloud
+  template:
+    dest: "/etc/profile.d/nextcloud-settings.sh"
+    src: "nextcloud-settings.sh"
+  become: true
+
+- name: Setup autostart
+  file:
+    src: /usr/share/applications/nextcloud.desktop
+    dest: /etc/xdg/autostart/nextcloud.desktop
+    state: link
+  when:
+    - nextcloud_autostart == true
+  become: true

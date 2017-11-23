@@ -1,0 +1,10 @@
+---
+- hosts: clients
+  roles:
+    - sys-upgrade
+    - rpmfusion
+    - default-tooling
+    - surface
+    - nextcloud-client
+    - riot
+    - automated-updates

@@ -1,0 +1,11 @@
+---
+# tasks file for default-tooling
+
+- include_tasks: "./fedora.yml"
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+
+- include_tasks: "./ubuntu.yml"
+  when:
+    - ansible_distribution == "Ubuntu"

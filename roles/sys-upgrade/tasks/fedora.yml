@@ -1,0 +1,8 @@
+---
+# tasks file for sys-upgrade
+
+- name: Upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+  become: true

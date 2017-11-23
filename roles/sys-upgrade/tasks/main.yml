@@ -1,0 +1,18 @@
+---
+# tasks file for sys-upgrade
+
+- include_tasks: "./fedora.yml"
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+
+- include_tasks: "./redhat.yml"
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version < 22
+
+- include_tasks: "./debian.yml"
+  when:
+    - ansible_os_family == "Debian"
+

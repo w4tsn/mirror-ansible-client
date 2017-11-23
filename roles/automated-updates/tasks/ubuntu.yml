@@ -1,0 +1,13 @@
+---
+# tasks file for automated-updates
+
+- name: Install dnf-automatic
+  dnf:
+    name: dnf-automatic
+    state: present
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+  notify: 
+    - restart dnf-automatic
+  become: true

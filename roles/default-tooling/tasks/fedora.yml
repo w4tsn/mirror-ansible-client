@@ -1,0 +1,10 @@
+---
+# tasks file for default-tooling
+
+- name: Install default packages
+  dnf: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ packages | map(attribute='dnf') | list }}"
+  become: true
