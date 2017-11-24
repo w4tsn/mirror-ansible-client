@@ -2,21 +2,31 @@
 # defaults file for default-tooling
 
 packages:
-  - dnf: vim
-  - dnf: tilix
-  - dnf: zsh
+  # Shells & config
   - dnf: util-linux-user
-  - dnf: firefox
-  - dnf: chromium
+  - dnf: zsh
+
+  # Shell utils
+  - dnf: vim
   - dnf: git
+  - dnf: ansible
+  - dnf: thefuck
+
+  # Desktop utils
+  - dnf: tilix
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
-  - dnf: thefuck
   - dnf: virt-manager
   - dnf: virt-viewer
-  - dnf: pass
-  - dnf: keepass
-  - dnf: ansible
   - dnf: telegram-desktop
   - dnf: flatpak
+
+  # Browsers
+  - dnf: firefox
+  - dnf: chromium
+
+  # Passwordsaves
+  - dnf: keepass
+  - dnf: pass
+
 
