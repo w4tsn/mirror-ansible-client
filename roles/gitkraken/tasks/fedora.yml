@@ -13,6 +13,16 @@
     dest: "{{ gitkraken_download_path }}"
   when: gitkraken_dir.stat.exists == False
 
+- name: Create GitKraken directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ gitkraken_install_path }}"
+    - "{{ gitkraken_config_path }}"
+  become: true
+
 - name: Unpack GitKraken
   unarchive:
     src: "{{ gitkraken_download_path }}"
@@ -25,4 +35,4 @@
   template:
     src: gitkraken.desktop
     dest: /usr/share/applications/gitkraken.desktop
-  become: yes
+  become: true

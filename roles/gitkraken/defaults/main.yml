@@ -2,4 +2,5 @@
 # defaults file for gitkraken
 gitkraken_download_path: "/tmp/gitkraken-amd64.tar.gz"
 gitkraken_install_path: "/opt/GitKraken"
+gitkraken_config_path: "/etc/GitKraken"
 gitkraken_download_url: "https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz"
