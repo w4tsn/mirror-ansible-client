@@ -1,0 +1,16 @@
+---
+# tasks file for vscode
+#
+- name: Add official repository
+  yum_repository:
+    state: present
+    name: vscode
+    description: Official repository for VSCode
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Install vscode
+  dnf:
+    name: code
+    state: present
