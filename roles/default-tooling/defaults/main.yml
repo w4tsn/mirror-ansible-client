@@ -3,6 +3,7 @@
 
 packages:
   # Shells & config
+  - dnf: dnf-plugins-core
   - dnf: util-linux-user
   - dnf: zsh
 
