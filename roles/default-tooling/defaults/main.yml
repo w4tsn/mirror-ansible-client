@@ -30,6 +30,8 @@ packages:
   - dnf: keepass
   - dnf: pass
 
-  # Misc
+  # Fonts
   - dnf: open-sans-fonts
+  - dnf: fontawesome-fonts
+  - dnf: fontawesome-fonts-web
 
