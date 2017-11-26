@@ -30,4 +30,6 @@ packages:
   - dnf: keepass
   - dnf: pass
 
+  # Misc
+  - dnf: open-sans-fonts
 
