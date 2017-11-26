@@ -9,4 +9,5 @@
   when:
     - ansible_distribution == "Fedora"
     - ansible_distribution_major_version > 21
+    - ansible_virtualization_type != "docker"
   become: true

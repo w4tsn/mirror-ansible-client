@@ -1,0 +1,8 @@
+---
+
+
+script:
+  - docker pull fedora
+  - docker build .
+
+sudo: yes
