@@ -16,6 +16,7 @@ packages:
 
   # Desktop utils
   - dnf: tilix
+  - dnf: tilix-nautilus
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
   - dnf: pdfmod
