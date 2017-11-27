@@ -20,7 +20,6 @@
     mode: 0755
   with_items:
     - "{{ gitkraken_install_path }}"
-    - "{{ gitkraken_config_path }}"
   become: true
 
 - name: Unpack GitKraken
