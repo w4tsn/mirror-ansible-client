@@ -12,6 +12,7 @@ packages:
   - dnf: git
   - dnf: ansible
   - dnf: thefuck
+  - dnf: stow
 
   # Desktop utils
   - dnf: tilix
