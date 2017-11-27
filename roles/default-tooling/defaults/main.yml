@@ -18,7 +18,7 @@ packages:
   - dnf: tilix
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
-  - dnf: pdfmod
+  - dnf: pdfshuffler
   - dnf: virt-manager
   - dnf: virt-viewer
   - dnf: telegram-desktop
