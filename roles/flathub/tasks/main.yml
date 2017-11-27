@@ -2,5 +2,7 @@
 # tasks file for Flathub
 
 - name: Install Flathub
-  command: "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+  copy:
+    src: flathub.flatpakrepo
+    dest: /etc/flatpak/remotes.d/flathub.flatpakrepo
   become: true
