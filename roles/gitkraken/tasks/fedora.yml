@@ -36,3 +36,10 @@
     src: gitkraken.desktop
     dest: /usr/share/applications/gitkraken.desktop
   become: true
+
+- name: Install desktop icon
+  copy:
+    src: gitkraken.png
+    dest: /usr/share/icons/hicolor/512x512/apps/gitkraken.png
+  become: true
+  notify: "refresh GTK icon cache"

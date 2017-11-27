@@ -1,2 +1,6 @@
 ---
 # handlers file for gitkraken
+
+- name: refresh GTK icon cache
+  command: "/bin/touch --no-create /usr/share/icons/hicolor && gtk-update-icon-cache"
+  become: true
