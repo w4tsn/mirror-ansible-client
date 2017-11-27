@@ -43,3 +43,10 @@
     dest: /usr/share/icons/hicolor/512x512/apps/gitkraken.png
   become: true
   notify: "refresh GTK icon cache"
+
+- name: Install GitKraken to path
+  file:
+    state: link
+    src: "{{ gitkraken_install_path }}/gitkraken"
+    dest: "/usr/local/bin/gitkraken"
+  become: true
