@@ -8,5 +8,6 @@ StartupNotify=true
 X-MultipleArgs=false
 Type=Application
 Categories=GNOME;GTK;Development;Documentation;
+MimeType=text/plain;inode/directory;
 Icon=gitkraken
 
