@@ -46,6 +46,6 @@
 - name: Install GitKraken to path
   file:
     state: link
-    src: "{{ gitkraken_install_path }}/gitkraken"
+    src: "{{ gitkraken_install_path }}/gitkraken/gitkraken"
     dest: "/usr/local/bin/gitkraken"
   become: true
