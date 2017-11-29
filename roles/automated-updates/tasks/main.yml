@@ -1,11 +1,10 @@
 ---
 # tasks file for automated-updates
 
-- include_tasks: "./fedora.yml"
-  when:
-    - ansible_distribution == "Fedora"
-    - ansible_distribution_major_version > 21
-
-- include_tasks: "./ubuntu.yml"
-  when:
-    - ansible_distribution == "Ubuntu"
+- include_tasks: "{{ distro_file }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: distro_file
