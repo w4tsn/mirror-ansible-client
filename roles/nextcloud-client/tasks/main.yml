@@ -13,12 +13,15 @@
 
 - name: Install Nextcloud
   dnf:
-    name: "nextcloud-client"
+    name: "{{ item }}"
     state: present
   when:
     - ansible_distribution == "Fedora"
     - ansible_distribution_major_version > 21
   become: true
+  with_items:
+    - nextcloud-client
+    - nextcloud-client-nautilus
 
 - name: Preconfigure Nextcloud
   template:
