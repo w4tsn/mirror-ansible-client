@@ -1,11 +1,22 @@
 ---
 # Fedora setup for GitKraken
 
+- name: Detect broken setup
+  stat:
+    path: "{{ gitkraken_install_path }}/gitkraken"
+  register: gitkraken_broken_setup
+
+- name: Remove broken setup
+  file:
+    path: "{{ gitkraken_install_path }}"
+    state: absent
+  become: true
+  when: gitkraken_broken_setup.stat.isdir is defined and gitkraken_broken_setup.stat.isdir
+
 - name: Check that GitKraken is installed
   stat:
     path: "{{ gitkraken_install_path }}"
   register: gitkraken_dir
-
 
 - name: Download GitKraken
   get_url: 
@@ -13,22 +24,26 @@
     dest: "{{ gitkraken_download_path }}"
   when: gitkraken_dir.stat.exists == False
 
-- name: Create GitKraken directories
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: 0755
-  with_items:
-    - "{{ gitkraken_install_path }}"
-  become: true
-
 - name: Unpack GitKraken
   unarchive:
     src: "{{ gitkraken_download_path }}"
-    dest: "{{ gitkraken_install_path }}"
+    dest: "/tmp/"
     remote_src: yes
+  register: unpacked_gitkraken
+  when: gitkraken_dir.stat.exists == False
+
+- name: Install GitKraken
+  command: "mv /tmp/gitkraken {{ gitkraken_install_path }}"
+  args:
+    creates: "{{ gitkraken_install_path }}"
   become: yes
   when: gitkraken_dir.stat.exists == False
+
+- name: Clean up
+  file:
+    path: /tmp/gitkraken
+    state: absent
+  when: unpacked_gitkraken|succeeded
 
 - name: Create desktop entry
   template:
@@ -46,6 +61,6 @@
 - name: Install GitKraken to path
   file:
     state: link
-    src: "{{ gitkraken_install_path }}/gitkraken/gitkraken"
+    src: "{{ gitkraken_install_path }}/gitkraken"
     dest: "/usr/local/bin/gitkraken"
   become: true

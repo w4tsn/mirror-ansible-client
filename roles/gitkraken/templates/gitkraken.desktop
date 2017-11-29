@@ -2,7 +2,7 @@
 Name=GitKraken
 Comment=The legendary Git GUI client for Windows, Mac and Linux.
 GenericName=GitKraken - The legendary Git GUI client
-Exec={{ gitkraken_install_path }}/gitkraken/gitkraken
+Exec={{ gitkraken_install_path }}/gitkraken
 Terminal=false
 StartupNotify=true
 X-MultipleArgs=false
