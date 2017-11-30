@@ -1,0 +1,10 @@
+---
+# handlers file for gitkraken
+
+- file:
+    path: "/usr/share/icons/hicolor"
+    state: touch
+  become: true
+
+- name: Update GTK icon cache
+  command: "gtk-update-icon-cache"
