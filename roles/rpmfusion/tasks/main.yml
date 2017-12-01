@@ -4,10 +4,9 @@
 - name: Add RPMFusion GPG key
   rpm_key:
     state: present
-    key: https://rpmfusion.org/keys?action=AttachFile&do=view&target=RPM-GPG-KEY-rpmfusion-free-fedora-26
+    key: "https://rpmfusion.org/keys?action=AttachFile&do=view&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}"
   when:
     - ansible_distribution == "Fedora"
-    - ansible_distribution_major_version == 26
 
 
 - name: Install RPMFusion
