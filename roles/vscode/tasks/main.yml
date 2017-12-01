@@ -1,6 +1,17 @@
 ---
 # tasks file for vscode
 #
+
+- name: Import GPG key
+  rpm_key:
+    state: present
+    key: "https://packages.microsoft.com/keys/microsoft.asc"
+  tags:
+    - vscode
+    - dnf
+    - gpg-key
+    - download
+
 - name: Add official repository
   yum_repository:
     state: present
