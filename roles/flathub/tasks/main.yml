@@ -5,4 +5,6 @@
   copy:
     src: flathub.flatpakrepo
     dest: /etc/flatpak/remotes.d/flathub.flatpakrepo
+  tags:
+    - flatpak
   become: true

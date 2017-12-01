@@ -4,24 +4,33 @@
 - name: Detect broken setup
   stat:
     path: "{{ gitkraken_install_path }}/gitkraken"
+  tags:
+    - gitkraken
   register: gitkraken_broken_setup
 
 - name: Remove broken setup
   file:
     path: "{{ gitkraken_install_path }}"
     state: absent
+  tags:
+    - gitkraken
   become: true
   when: gitkraken_broken_setup.stat.isdir is defined and gitkraken_broken_setup.stat.isdir
 
 - name: Check that GitKraken is installed
   stat:
     path: "{{ gitkraken_install_path }}"
+  tags:
+    - gitkraken
   register: gitkraken_dir
 
 - name: Download GitKraken
   get_url: 
     url: "{{ gitkraken_download_url }}"
     dest: "{{ gitkraken_download_path }}"
+  tags:
+    - download
+    - gitkraken
   when: gitkraken_dir.stat.exists == False
 
 - name: Unpack GitKraken
@@ -29,6 +38,9 @@
     src: "{{ gitkraken_download_path }}"
     dest: "/tmp/"
     remote_src: yes
+  tags:
+    - gitkraken
+    - unarchive
   register: unpacked_gitkraken
   when: gitkraken_dir.stat.exists == False
 
@@ -36,6 +48,8 @@
   command: "mv /tmp/gitkraken {{ gitkraken_install_path }}"
   args:
     creates: "{{ gitkraken_install_path }}"
+  tags:
+    - gitkraken
   become: yes
   when: gitkraken_dir.stat.exists == False
 
@@ -43,18 +57,28 @@
   file:
     path: /tmp/gitkraken
     state: absent
+  tags:
+    - gitkraken
   when: unpacked_gitkraken|succeeded
 
 - name: Create desktop entry
   template:
     src: gitkraken.desktop
     dest: /usr/share/applications/gitkraken.desktop
+  tags:
+    - gitkraken
+    - desktop
   become: true
 
 - name: Install desktop icon
   copy:
     src: gitkraken.png
     dest: /usr/share/icons/hicolor/512x512/apps/gitkraken.png
+  tags:
+    - gitkraken
+    - gtk
+    - icons
+    - desktop
   become: true
   notify: "refresh GTK icon cache"
 
@@ -63,4 +87,7 @@
     state: link
     src: "{{ gitkraken_install_path }}/gitkraken"
     dest: "/usr/local/bin/gitkraken"
+  tags:
+    - gitkraken
+    - apth
   become: true

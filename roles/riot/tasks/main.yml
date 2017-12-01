@@ -6,6 +6,10 @@
   command: "dnf copr enable -y taw/Riot"
   args:
     creates: /etc/yum.repos.d/_copr_taw-Riot.repo
+  tags:
+    - riot
+    - dnf
+    - copr
   when:
     - ansible_distribution == "Fedora"
     - ansible_distribution_major_version > 21
@@ -15,4 +19,8 @@
   dnf:
     name: riot
     state: present
+  tags:
+    - riot
+    - dnf
+    - packages
   become: true

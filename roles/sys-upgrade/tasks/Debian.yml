@@ -5,5 +5,9 @@
   apt:
     name: "*"
     state: latest
+  tags:
+    - apt
+    - download
+    - packages
   become: true
 

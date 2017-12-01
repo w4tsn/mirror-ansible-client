@@ -5,4 +5,8 @@
   yum:
     name: "*"
     state: latest
+  tags:
+    - yum
+    - download
+    - packages
   become: true

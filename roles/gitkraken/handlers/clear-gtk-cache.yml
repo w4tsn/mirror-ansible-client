@@ -4,7 +4,13 @@
 - file:
     path: "/usr/share/icons/hicolor"
     state: touch
+  tags:
+    - gitkraken
+    - gtk
   become: true
 
 - name: Update GTK icon cache
+  tags:
+    - gitkraken
+    - gtk
   command: "gtk-update-icon-cache"

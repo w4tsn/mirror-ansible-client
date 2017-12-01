@@ -8,6 +8,10 @@
   template:
     src: networkmanager.conf
     dest: /etc/NetworkManager/conf.d/zz_surface.conf
+  tags:
+    - networkmanager
+    - hardware
+    - surface
   when:
     - ansible_product_name == "Surface Pro 3"
     - networkmanager_confd.stat.exists == true

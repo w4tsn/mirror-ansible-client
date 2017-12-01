@@ -9,10 +9,18 @@
     baseurl: https://packages.microsoft.com/yumrepos/vscode
     gpgcheck: yes
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+  tags:
+    - vscode
+    - dnf
+    - gpg-key
   become: true
 
 - name: Install vscode
   dnf:
     name: code
     state: present
+  tags:
+    - vscode
+    - dnf
+    - packages
   become: true
