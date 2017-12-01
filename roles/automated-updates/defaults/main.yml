@@ -1,2 +1,4 @@
 ---
 # defaults file for automated-updates
+
+automated_updates_enabled: "yes"
