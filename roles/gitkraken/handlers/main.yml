@@ -2,4 +2,4 @@
 # handlers file for gitkraken
 
 - name: refresh GTK icon cache
-  include: "clear-gtk-cache.yml"
+  include_tasks: "clear-gtk-cache.yml"
