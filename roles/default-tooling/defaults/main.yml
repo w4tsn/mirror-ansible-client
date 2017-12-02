@@ -19,6 +19,8 @@ packages:
   - dnf: tilix-nautilus
   - dnf: remmina
   - dnf: gthumb
+  - dnf: vlc
+  - dnf: libaacs
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
   - dnf: pdfshuffler
