@@ -2,6 +2,8 @@
 # tasks file for vscode
 #
 
+# Temporary fix.until 2.4.2 is provided
+# See https://github.com/ansible/ansible/issues/32053
 - name: Downgrade urllib3 to 1.13.1
   pip: 
     name: urllib3
@@ -11,6 +13,10 @@
     - pip
     - libs
   become: true
+  when:
+    - ansible_version.major == 2
+    - ansible_version.minor <= 4
+    - ansible_version.revision < 2
 
 - name: Import GPG key
   rpm_key:
@@ -21,6 +27,7 @@
     - dnf
     - gpg-key
     - download
+  become: true
 
 - name: Add official repository
   yum_repository:
