@@ -2,6 +2,16 @@
 # tasks file for vscode
 #
 
+- name: Downgrade urllib3 to 1.13.1
+  pip: 
+    name: urllib3
+    version: 1.13.1
+  tags:
+    - vscode
+    - pip
+    - libs
+  become: true
+
 - name: Import GPG key
   rpm_key:
     state: present
