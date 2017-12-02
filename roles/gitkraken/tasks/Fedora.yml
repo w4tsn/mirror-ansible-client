@@ -89,5 +89,5 @@
     dest: "/usr/local/bin/gitkraken"
   tags:
     - gitkraken
-    - apth
+    - path
   become: true
