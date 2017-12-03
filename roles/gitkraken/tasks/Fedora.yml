@@ -91,3 +91,16 @@
     - gitkraken
     - path
   become: true
+
+- name: Install Nautilus-Extension
+  copy:
+    src: open-gitkraken.py
+    dest: /usr/share/nautilus-python/extensions/open-gitkraken.py
+  tags:
+    - gitkraken
+    - python
+    - nautilus
+    - nautilus-python
+    - nautlius-python-extension
+  become: true
+  notify: "Nautilus python extension notification"
