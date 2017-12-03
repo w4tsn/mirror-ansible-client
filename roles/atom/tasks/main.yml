@@ -1,40 +1,10 @@
 ---
 # tasks file for atom
 
-- name: Check atom is installed
-  dnf:
-    name: atom
-    state: present
-  ignore_errors: true
-  register: atom_installed
-  become: true
-
-- name: Download atom
-  get_url:
-    url: "{{ atom_url }}"
-    dest: "/tmp/atom.rpm"
-  register: atom_download
-  when:
-    - atom_installed|failed
-
-- name: Install atom
-  dnf:
-    name: "/tmp/atom.rpm"
-    state: present
-  when:
-    - atom_installed|failed
-    - atom_download|succeeded
-  become: true
-
-- name: Install Nautilus-Extension
-  copy:
-    src: open-atom.py
-    dest: /usr/share/nautilus-python/extensions/open-atom.py
-  tags:
-    - atom
-    - python
-    - nautilus
-    - nautilus-python
-    - nautlius-python-extension
-  become: true
-  notify: "Nautilus python extension notification"
+- include_tasks: "{{ distro_file }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: distro_file

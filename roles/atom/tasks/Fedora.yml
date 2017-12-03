@@ -1,0 +1,59 @@
+---
+# tasks file for atom
+
+- name: Check atom is installed
+  dnf:
+    name: atom
+    state: present
+  ignore_errors: true
+  register: atom_installed
+  tags:
+    - atom
+    - dnf
+    - packages
+  become: true
+
+- name: Download atom
+  get_url:
+    url: "{{ atom_url }}"
+    dest: "/tmp/atom.rpm"
+  register: atom_download
+  tags:
+    - atom
+    - download
+    - packages
+  when:
+    - atom_installed|failed
+
+- name: Install atom
+  dnf:
+    name: "/tmp/atom.rpm"
+    state: present
+  tags:
+    - atom
+    - dnf
+    - packages
+  become: true
+  when:
+    - atom_installed|failed
+    - atom_download|succeeded
+
+- name: Clean up
+  file:
+    path: "/tmp/atom.rpm"
+    state: absent
+  tags:
+    - atom
+
+- name: Install Nautilus-Extension
+  copy:
+    src: open-atom.py
+    dest: /usr/share/nautilus-python/extensions/open-atom.py
+  tags:
+    - atom
+    - python
+    - nautilus
+    - nautilus-python
+    - nautlius-python-extension
+  become: true
+  notify: "Nautilus python extension notification"
