@@ -1,0 +1,27 @@
+---
+# tasks file for atom
+
+- name: Check atom is installed
+  dnf:
+    name: atom
+    state: present
+  ignore_errors: true
+  register: atom_installed
+  become: true
+
+- name: Download atom
+  get_url:
+    url: "{{ atom_url }}"
+    dest: "/tmp/atom.rpm"
+  register: atom_download
+  when:
+    - atom_installed|failed
+
+- name: Install atom
+  dnf:
+    name: "/tmp/atom.rpm"
+    state: present
+  when:
+    - atom_installed|failed
+    - atom_download|succeeded
+  become: true
