@@ -13,7 +13,6 @@
     - hardware
     - surface
   when:
-    - ansible_product_name == "Surface Pro 3"
     - networkmanager_confd.stat.exists == true
   notify:
     - restart NetworkManager

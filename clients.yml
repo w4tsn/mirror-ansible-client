@@ -3,7 +3,7 @@
   roles:
     - sys-upgrade
     - rpmfusion
-    - surface
+    - hardware
     - default-tooling
     - nautilus
     - nextcloud-client

@@ -1,0 +1,12 @@
+---
+# tasks file for hardware
+
+- name: "Select tasks for hardware platform"
+  include_tasks: "{{ hwardware_file }}"
+  with_first_found:
+    - "{{ ansible_product_uuid }}"
+    - "{{ ansible_product_version }}"
+    - "{{ ansible_product_name }}.yml"
+    - default.yml
+  loop_control:
+    loop_var: hardware_file
