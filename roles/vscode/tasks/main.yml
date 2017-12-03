@@ -52,3 +52,16 @@
     - dnf
     - packages
   become: true
+
+- name: Install Nautilus-Extension
+  copy:
+    src: open-code.py
+    dest: /usr/share/nautilus-python/extensions/open-code.py
+  tags:
+    - vscode
+    - python
+    - nautilus
+    - nautilus-python
+    - nautlius-python-extension
+  become: true
+  notify: "Nautilus python extension notification"
