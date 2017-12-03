@@ -17,7 +17,7 @@ Make sure you have an SSH key with access to this repository. If not replace the
 sudo dnf install git ansible
 git clone git@github.com:SISheogorath/ansible-client.git
 cd ansible-client
-ansible-playbook -i inventory -K clients.yml
+ansible-playbook clients.yml
 ```
 
 Development
