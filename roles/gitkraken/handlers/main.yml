@@ -2,7 +2,7 @@
 # handlers file for gitkraken
 
 - name: refresh GTK icon cache
-  include: "clear-gtk-cache.yml"
+  import_tasks: "clear-gtk-cache.yml"
 
 - name: Nautilus python extension notification
   debug:
