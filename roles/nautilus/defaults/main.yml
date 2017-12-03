@@ -1,0 +1,6 @@
+---
+# defaults file for nautilus
+
+nautilus_packages:
+  - dnf: nautilus
+  - dnf: nautilus-python

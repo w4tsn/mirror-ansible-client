@@ -3,7 +3,3 @@
 
 - name: refresh GTK icon cache
   import_tasks: "clear-gtk-cache.yml"
-
-- name: Nautilus python extension notification
-  debug:
-    msg: "New nautilus python extensions become available after next login."

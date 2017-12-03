@@ -25,3 +25,16 @@
     - atom_installed|failed
     - atom_download|succeeded
   become: true
+
+- name: Install Nautilus-Extension
+  copy:
+    src: open-atom.py
+    dest: /usr/share/nautilus-python/extensions/open-atom.py
+  tags:
+    - atom
+    - python
+    - nautilus
+    - nautilus-python
+    - nautlius-python-extension
+  become: true
+  notify: "Nautilus python extension notification"

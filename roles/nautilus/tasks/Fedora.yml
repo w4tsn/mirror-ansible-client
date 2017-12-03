@@ -1,0 +1,15 @@
+---
+# tasks file for nautilus
+
+- name: Install nautilus packages
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ nautilus_packages | map(attribute='dnf') | list }}"
+  tags:
+    - nautilus
+    - dnf
+    - download
+    - packages
+  become: true

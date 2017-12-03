@@ -3,8 +3,9 @@
   roles:
     - sys-upgrade
     - rpmfusion
-    - default-tooling
     - surface
+    - default-tooling
+    - nautilus
     - nextcloud-client
     - riot
     - gitkraken
