@@ -1,12 +1,20 @@
 ---
 # tasks file for hardware
 
-- name: "Select tasks for hardware platform"
-  include_tasks: "{{ hwardware_file }}"
+- name: "Select tasks for hardware platform on {{ ansible_distribution }} {{ ansible_distribution_major_version }}"
+  include_tasks: "{{ hardware_file }}"
   with_first_found:
-    - "{{ ansible_product_uuid }}"
-    - "{{ ansible_product_version }}"
-    - "{{ ansible_product_name }}.yml"
+    - "{{ ansible_product_uuid }}-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_product_uuid }}-{{ ansible_distribution }}.yml"
+    - "{{ ansible_product_uuid }}-{{ ansible_os_family }}.yml"
+
+    - "{{ ansible_product_version }}-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_product_version }}-{{ ansible_distribution }}.yml"
+    - "{{ ansible_product_version }}-{{ ansible_os_family }}.yml"
+
+    - "{{ ansible_product_name }}-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_product_name }}-{{ ansible_distribution }}.yml"
+    - "{{ ansible_product_name }}-{{ ansible_os_family }}.yml"
     - default.yml
   loop_control:
     loop_var: hardware_file
