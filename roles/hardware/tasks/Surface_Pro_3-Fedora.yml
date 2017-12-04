@@ -1,6 +1,16 @@
 ---
 # tasks file for surface
 
+- name: Install SELinux dependencies
+  dnf:
+    name: libselinux-python
+    state: present
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 21
+    - ansible_selinux_python_present == false
+  become: true
+
 - stat: path=/etc/NetworkManager/conf.d/
   register: networkmanager_confd
 
