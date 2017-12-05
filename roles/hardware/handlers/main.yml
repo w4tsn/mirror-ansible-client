@@ -5,6 +5,4 @@
   service:
     name: NetworkManager
     state: restarted
-  when:
-    - ansible_virtualization_type != "docker"
   become: true
