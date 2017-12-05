@@ -11,7 +11,8 @@
     - ansible_selinux_python_present == false
   become: true
 
-- stat: path=/etc/NetworkManager/conf.d/
+- name: Check for NetworkManager
+  stat: path=/etc/NetworkManager/conf.d/
   register: networkmanager_confd
 
 - name: Disable Network manager MAC randomization on Surface
