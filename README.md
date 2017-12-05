@@ -1,7 +1,7 @@
 Ansible Client Deployment
 ===
 
-This repository provides the ability to install your Client a few minutes.
+This repository provides the ability to install your Client in a few minutes.
 
 We setup various things, like updating your client to the latest state, install packages like VSCode, VLC, Tilix and more, to take your whole client into a working state.
 
