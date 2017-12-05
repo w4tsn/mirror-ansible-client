@@ -1,6 +1,8 @@
 ---
 # defaults file for default-tooling
 
+extend_packages: []
+
 packages:
   # Shells & config
   - dnf: dnf-plugins-core
