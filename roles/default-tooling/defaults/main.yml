@@ -42,3 +42,6 @@ packages:
   - dnf: fontawesome-fonts
   - dnf: fontawesome-fonts-web
 
+  # Dictionaries
+  - dnf: hunspell-de
+  - dnf: aspell-de
