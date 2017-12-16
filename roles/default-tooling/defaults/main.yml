@@ -29,6 +29,9 @@ packages:
   - dnf: telegram-desktop
   - dnf: flatpak
 
+  # Media
+  - dnf: gimp
+
   # Browsers
   - dnf: firefox
   - dnf: chromium
