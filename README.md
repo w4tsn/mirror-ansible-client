@@ -8,14 +8,14 @@ We setup various things, like updating your client to the latest state, install 
 Usage
 ---
 
-Make sure you have an SSH key with access to this repository. If not replace the git clone command with an unzip of the downloaded `.zip` file from zip-download from GitHub.
+Clone the repository, and use `ansible-playbook` to run it.
 
 
 ### Fedora
 
 ```
 sudo dnf install git ansible
-git clone git@github.com:SISheogorath/ansible-client.git
+git clone https://github.com/SISheogorath/ansible-client.git
 cd ansible-client
 ansible-playbook clients.yml
 ```
