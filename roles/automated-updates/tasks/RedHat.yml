@@ -1,0 +1,27 @@
+---
+# tasks file for automated-updates
+
+- name: Install yum-cron
+  dnf:
+    name: yum-cron
+    state: present
+  tags:
+    - dnf
+    - automated-updates
+  notify: 
+    - restart dnf-automatic
+  become: true
+
+- name: Set automated install setting
+  ini_file:
+    path: /etc/yum/yum-cron.conf
+    section: commands
+    option: apply_updates
+    value: "{{ automated_updates_enabled }}"
+    backup: yes
+  tags:
+    - automated-updates
+    - dnf
+    - config
+  become: true
+
