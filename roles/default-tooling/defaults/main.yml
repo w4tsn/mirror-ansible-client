@@ -3,6 +3,7 @@
 
 packages:
   # Shells & config
+  - dnf: python3-dnf-plugin-system-upgrade
   - dnf: dnf-plugins-core
   - dnf: util-linux-user
   - dnf: zsh
@@ -28,6 +29,9 @@ packages:
   - dnf: virt-viewer
   - dnf: telegram-desktop
   - dnf: flatpak
+
+  # Media
+  - dnf: gimp
 
   # Browsers
   - dnf: firefox

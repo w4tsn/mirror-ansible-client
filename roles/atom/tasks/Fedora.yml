@@ -1,49 +1,41 @@
 ---
 # tasks file for atom
 
-- name: Check atom is installed
+- name: Import GPG key
+  rpm_key:
+    state: present
+    key: "https://packagecloud.io/AtomEditor/atom/gpgkey"
+  tags:
+    - atom
+    - dnf
+    - gpg-key
+    - download
+  become: true
+
+- name: Add official repository
+  yum_repository:
+    state: present
+    name: atom
+    description: Official repository for Atom
+    baseurl: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
+    gpgcheck: false
+    repo_gpgcheck: true
+    gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkey
+  tags:
+    - atom
+    - dnf
+    - gpg-key
+  become: true
+
+- name: Install Atom
   dnf:
     name: atom
     state: present
-  ignore_errors: true
-  register: atom_installed
   tags:
     - atom
     - dnf
     - packages
   become: true
-
-- name: Download atom
-  get_url:
-    url: "{{ atom_url }}"
-    dest: "/tmp/atom.rpm"
-  register: atom_download
-  tags:
-    - atom
-    - download
-    - packages
-  when:
-    - atom_installed|failed
-
-- name: Install atom
-  dnf:
-    name: "/tmp/atom.rpm"
-    state: present
-  tags:
-    - atom
-    - dnf
-    - packages
-  become: true
-  when:
-    - atom_installed|failed
-    - atom_download|succeeded
-
-- name: Clean up
-  file:
-    path: "/tmp/atom.rpm"
-    state: absent
-  tags:
-    - atom
 
 - name: Install Nautilus-Extension
   copy:
