@@ -1,6 +1,8 @@
 ---
 # defaults file for default-tooling
 
+extend_packages: []
+
 packages:
   # Shells & config
   - dnf: python3-dnf-plugin-system-upgrade

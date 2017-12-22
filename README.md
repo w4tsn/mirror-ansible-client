@@ -20,6 +20,21 @@ cd ansible-client
 ansible-playbook clients.yml
 ```
 
+### Extend/personalize your setup
+
+To extend the default packages you can use `extend_packages` in your `host_vars/localhost` file.
+
+To install [`cowsay`](https://en.wikipedia.org/wiki/Cowsay) for example:
+
+```yaml
+---
+
+extend_packages:
+  - dnf: cowsay
+
+```
+
+
 Development
 ---
 
