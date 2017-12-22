@@ -29,8 +29,7 @@
   become: true
 
 - name: update repo cache for the new repo
-  command: "dnf -q makecache -y --disablerepo=* \"--enablerepo={{ atom_reponame }}\""
-  become: true
+  command: "dnf -q makecache -y \"--disablerepo=*\" \"--enablerepo={{ atom_reponame }}\""
   when:
     - atom_repo|changed
 
