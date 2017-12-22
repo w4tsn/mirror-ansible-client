@@ -20,7 +20,7 @@
     baseurl: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
     gpgcheck: false
     repo_gpgcheck: true
-    gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkeya
+    gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkey
   tags:
     - atom
     - dnf
