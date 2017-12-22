@@ -15,17 +15,24 @@
 - name: Add official repository
   yum_repository:
     state: present
-    name: atom
+    name: "{{ atom_reponame }}"
     description: Official repository for Atom
     baseurl: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
     gpgcheck: false
     repo_gpgcheck: true
-    gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkey
+    gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkeya
   tags:
     - atom
     - dnf
     - gpg-key
+  register: atom_repo
   become: true
+
+- name: update repo cache for the new repo
+  command: "dnf -q makecache -y --disablerepo=* \"--enablerepo={{ atom_reponame }}\""
+  become: true
+  when:
+    - atom_repo|changed
 
 - name: Install Atom
   dnf:

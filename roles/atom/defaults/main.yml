@@ -1,4 +1,5 @@
 ---
 # defaults file for atom
 
+atom_reponame: atom
 atom_url: "https://atom.io/download/rpm"
