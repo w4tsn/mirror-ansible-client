@@ -1,0 +1,5 @@
+---
+# defaults file for gnome-connect
+
+gsconnect_version: 7
+gsconnect_url: "https://github.com/andyholmes/gnome-shell-extension-gsconnect/releases/download/v{{ gsconnect_version }}/gsconnect.andyholmes.github.io.zip"
