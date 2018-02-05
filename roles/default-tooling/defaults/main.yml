@@ -35,6 +35,7 @@ packages:
   # Media
   - dnf: gimp
   - dnf: krita
+  - dnf: darktable
 
   # Browsers
   - dnf: firefox
