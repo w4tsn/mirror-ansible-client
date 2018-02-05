@@ -34,6 +34,7 @@ packages:
 
   # Media
   - dnf: gimp
+  - dnf: krita
 
   # Browsers
   - dnf: firefox
