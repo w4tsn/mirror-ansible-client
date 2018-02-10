@@ -1,0 +1,6 @@
+---
+# defaults file for keybase
+
+keybase_repo_name: keybase
+keybase_repo_url: http://prerelease.keybase.io/rpm/x86_64
+keybase_gpgkey_url: https://keybase.io/docs/server_security/code_signing_key.asc

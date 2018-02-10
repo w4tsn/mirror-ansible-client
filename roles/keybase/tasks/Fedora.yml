@@ -1,0 +1,63 @@
+---
+# tasks file for keybase
+
+- name: Import GPG key
+  rpm_key:
+    state: present
+    key: "{{ keybase_gpgkey_url }}"
+  tags:
+    - keybase
+    - dnf
+    - gpg-key
+    - download
+  become: true
+
+- name: Add official repository
+  yum_repository:
+    state: present
+    name: "{{ keybase_repo_name }}"
+    description: Official repository for Keybase
+    baseurl: "{{ keybase_repo_url }}"
+    gpgcheck: true
+    gpgkey: "{{ keybase_gpgkey_url }}"
+    metadata_expire: 60
+  tags:
+    - keybase
+    - dnf
+    - gpg-key
+  register: keybase_repo
+  become: true
+
+- name: update repo cache for the new repo
+  command: "dnf -q makecache -y \"--disablerepo=*\" \"--enablerepo={{ keybase_repo_name }}\""
+  when:
+    - keybase_repo|changed
+
+- name: Install Keybase
+  dnf:
+    name: keybase
+    state: present
+  tags:
+    - keybase
+    - dnf
+    - packages
+  become: true
+
+  # Add the repo again. The package installes its own version of the repo file
+  # and breaks ansible idempotence this way, if we don't correct this immediately
+- name: Add official repository (again), since the package installs an own repo version
+  yum_repository:
+    state: present
+    name: "{{ keybase_repo_name }}"
+    description: Official repository for Keybase
+    baseurl: "{{ keybase_repo_url }}"
+    gpgcheck: true
+    gpgkey: "{{ keybase_gpgkey_url }}"
+    metadata_expire: 60
+  tags:
+    - keybase
+    - dnf
+    - gpg-key
+  become: true
+
+
