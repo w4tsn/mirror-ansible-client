@@ -49,6 +49,7 @@ packages:
   - dnf: open-sans-fonts
   - dnf: fontawesome-fonts
   - dnf: fontawesome-fonts-web
+  - dnf: xorg-x11-fonts-Type1
 
   # Dictionaries
   - dnf: hunspell-de
