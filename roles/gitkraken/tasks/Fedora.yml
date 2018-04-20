@@ -59,7 +59,7 @@
     state: absent
   tags:
     - gitkraken
-  when: unpacked_gitkraken|succeeded
+  when: unpacked_gitkraken is succeeded
 
 - name: Create desktop entry
   template:

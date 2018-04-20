@@ -31,7 +31,7 @@
 - name: update repo cache for the new repo
   command: "dnf -q makecache -y \"--disablerepo=*\" \"--enablerepo={{ keybase_repo_name }}\""
   when:
-    - keybase_repo|changed
+    - keybase_repo is changed
 
 - name: Install Keybase
   dnf:
