@@ -1,7 +1,17 @@
 ---
 # tasks file for sys-upgrade
 
-- name: Upgrade all packages (Debian-based)
+- name: Install aptitude
+  apt:
+    name: "aptitude"
+    state: present
+  tags:
+    - apt
+    - download
+    - packages
+  become: true
+
+- name: Upgrade all packages
   apt:
     name: "*"
     state: latest
