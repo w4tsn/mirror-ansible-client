@@ -1,0 +1,26 @@
+---
+# tasks file for discord
+
+
+- name: Enable COPR
+  command: "dnf copr enable -y tcg/discord"
+  args:
+    creates: /etc/yum.repos.d/_copr_tcg-discord.repo
+  tags:
+    - discord
+    - dnf
+    - copr
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 26
+  become: true
+
+- name: Install discord
+  dnf:
+    name: Discord-installer
+    state: present
+  tags:
+    - discord
+    - dnf
+    - packages
+  become: true
