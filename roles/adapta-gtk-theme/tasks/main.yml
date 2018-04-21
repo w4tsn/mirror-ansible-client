@@ -1,0 +1,65 @@
+---
+# tasks file for adapta-gtk-theme
+
+- name: Enable COPR
+  command: "dnf copr enable -y heikoada/gtk-themes"
+  args:
+    creates: /etc/yum.repos.d/_copr_keikoada-gtk-themes.repo
+  tags:
+    - adapta-gtk-theme
+    - dnf
+    - copr
+  when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version > 26
+  become: true
+
+- name: Install Adapta-GTK-Theme Common Package
+  dnf:
+    name: adapta-gtk-theme-common
+    state: present
+  tags:
+    - adapta-gtk-theme
+    - dnf
+    - packages
+  become: true
+
+- name: Install Adapta-GTK-Theme for GTK2
+  dnf:
+    name: adapta-gtk-theme-gtk2
+    state: present
+  tags:
+    - adapta-gtk-theme
+    - dnf
+    - packages
+  become: true
+
+- name: Install Adapta-GTK-Theme for GTK3
+  dnf:
+    name: adapta-gtk-theme-gtk3
+    state: present
+  tags:
+    - adapta-gtk-theme
+    - dnf
+    - packages
+  become: true
+
+- name: Install Adapta-GTK-Theme for GTK4
+  dnf:
+    name: adapta-gtk-theme-gtk4
+    state: present
+  tags:
+    - adapta-gtk-theme
+    - dnf
+    - packages
+  become: true
+
+- name: Install Paper Icon-Theme
+  dnf:
+    name: paper-icon-theme
+    state: present
+  tags:
+    - adapta-gtk-theme
+    - dnf
+    - packages
+  become: true
