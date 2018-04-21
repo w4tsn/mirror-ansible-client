@@ -5,6 +5,7 @@
     - rpmfusion
     - hardware
     - default-tooling
+    - gnome-enhancements
     - nautilus
     - nextcloud-client
     - riot

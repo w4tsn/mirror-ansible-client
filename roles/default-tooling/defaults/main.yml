@@ -19,14 +19,11 @@ packages:
 
   # Desktop utils
   - dnf: tilix
-  - dnf: tilix-nautilus
   - dnf: remmina
-  - dnf: gthumb
   - dnf: vlc
   - dnf: libaacs
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
-  - dnf: pdfshuffler
   - dnf: virt-manager
   - dnf: virt-viewer
   - dnf: telegram-desktop

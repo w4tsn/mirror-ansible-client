@@ -1,0 +1,12 @@
+---
+# defaults file for gnome-enhancements
+
+packages:
+  # Shells & config
+  - dnf: gnome-tweak-tool
+  - dnf: gnome-shell-extension-user-theme
+  
+  # Desktop utils
+  - dnf: tilix-nautilus
+  - dnf: gthumb
+  - dnf: pdfshuffler
