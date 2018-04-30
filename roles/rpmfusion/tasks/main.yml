@@ -15,6 +15,14 @@
   become: true
 
 
+- name: Check RPMFusion is installed
+  dnf:
+    name: "rpmfusion-free-release"
+    state: present
+  ignore_errors: true
+  register: rpmfusion_test
+  become: true
+
 - name: Install RPMFusion
   dnf:
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
@@ -26,4 +34,5 @@
     - download
   when:
     - ansible_distribution == "Fedora"
+    - rpmfusion_test is failed
   become: true
