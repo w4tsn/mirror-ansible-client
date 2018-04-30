@@ -6,6 +6,7 @@
   command: "dnf copr enable -y tcg/discord"
   args:
     creates: /etc/yum.repos.d/_copr_tcg-discord.repo
+    warn: false
   tags:
     - discord
     - dnf

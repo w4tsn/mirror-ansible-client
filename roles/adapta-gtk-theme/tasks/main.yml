@@ -5,6 +5,7 @@
   command: "dnf copr enable -y heikoada/gtk-themes"
   args:
     creates: /etc/yum.repos.d/_copr_keikoada-gtk-themes.repo
+    warn: false
   tags:
     - adapta-gtk-theme
     - dnf

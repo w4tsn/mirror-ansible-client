@@ -6,6 +6,7 @@
   command: "dnf copr enable -y taw/Riot"
   args:
     creates: /etc/yum.repos.d/_copr_taw-Riot.repo
+    warn: false
   tags:
     - riot
     - dnf
