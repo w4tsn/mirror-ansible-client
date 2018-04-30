@@ -35,4 +35,20 @@
   when:
     - ansible_distribution == "Fedora"
     - rpmfusion_test is failed
+  register: rpmfusion_install
+  become: true
+
+- name: Update RPMFusion
+  dnf:
+    name: "rpmfusion-free-release"
+    state: latest
+  tags:
+    - rpmfusion
+    - dnf
+    - packages
+    - download
+  when:
+    - ansible_distribution == "Fedora"
+    - rpmfusion_install is changed
+  register: rpmfusion_install
   become: true
