@@ -9,7 +9,7 @@ env:
   - distribution: fedora
     version: 27
   - distribution: fedora
-    version: 26
+    version: 28
 
 before_install:
   - 'sudo docker pull ${distribution}:${version}'
