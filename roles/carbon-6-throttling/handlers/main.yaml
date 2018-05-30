@@ -1,0 +1,5 @@
+# carbon-6-throttling handlers
+
+- name: Throttling patch restart notification
+  debug:
+    msg: "Dear Carbon X1 user, please restart your device for the throttling patch to take effect."

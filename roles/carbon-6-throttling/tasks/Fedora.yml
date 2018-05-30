@@ -15,7 +15,6 @@
   become: true
 
 - name: Install CPU-Throttling patch script
-  when: ansible_product_version == 'ThinkPad X1 Carbon 6th'
   copy:
     src: cpu-throttling.sh
     dest: /usr/local/bin/cpu-throttling.sh
@@ -28,9 +27,7 @@
   become: true
 
 - name: Install CPU-Throttling systemd service
-  when: 
-    - ansible_product_version == 'ThinkPad X1 Carbon 6th'
-    - cpu_throttling_script is succeeded
+  when: cpu_throttling_script is succeeded
   copy:
     src: cpu-throttling.service
     dest: /etc/systemd/system/cpu-throttling.service
@@ -43,9 +40,7 @@
   become: true
 
 - name: Install CPU-throttling systemd timer
-  when: 
-    - ansible_product_version == 'ThinkPad X1 Carbon 6th'
-    - cpu_throttling_script is succeeded
+  when: cpu_throttling_script is succeeded
   copy:
     src: cpu-throttling.timer
     dest: /etc/systemd/system/cpu-throttling.timer
@@ -65,6 +60,7 @@
     state: started
     daemon_reload: yes
   become: true
+  notify: "Throttling patch restart notification"
 
 - name: Enable CPU-throttling systemd timer
   when: cpu_throttling_timer is succeeded
