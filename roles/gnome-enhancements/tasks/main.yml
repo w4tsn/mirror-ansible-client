@@ -9,4 +9,4 @@
     - "{{ ansible_os_family }}.yml"
   loop_control:
     loop_var: distro_file
-  when: ansible_env.DESKTOP_SESSION = 'gnome'
+  when: ansible_env.DESKTOP_SESSION is search("gnome")
