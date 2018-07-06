@@ -1,10 +1,11 @@
 ---
 # tasks file for Flathub
 
-- name: Install Flathub
-  copy:
-    src: flathub.flatpakrepo
-    dest: /etc/flatpak/remotes.d/flathub.flatpakrepo
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   tags:
     - flatpak
   become: true
