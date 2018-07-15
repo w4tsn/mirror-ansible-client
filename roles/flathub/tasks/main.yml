@@ -8,4 +8,7 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   tags:
     - flatpak
+  when:
+    - ansible_version.major >= 2
+    - ansible_version.minor >= 6
   become: true
