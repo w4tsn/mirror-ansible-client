@@ -1,5 +1,5 @@
 ---
-# tasks file for gnome-enhancements 
+# tasks file for gnome-enhancements
 
 - name: "Select tasks for {{ ansible_distribution }} {{ ansible_distribution_major_version }}"
   include_tasks: "{{ distro_file }}"
@@ -9,4 +9,4 @@
     - "{{ ansible_os_family }}.yml"
   loop_control:
     loop_var: distro_file
-  when: ansible_env.DESKTOP_SESSION is search("gnome")
+  when: ansible_env.DESKTOP_SESSION is defined and ansible_env.DESKTOP_SESSION == "gnome"
