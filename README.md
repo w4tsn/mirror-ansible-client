@@ -15,7 +15,7 @@ Clone the repository, and use `ansible-playbook` to run it.
 
 ```
 sudo dnf install git ansible
-git clone https://github.com/SISheogorath/ansible-client.git
+git clone https://octo.sh/ansible-client/ansible-client.git
 cd ansible-client
 ansible-playbook clients.yml
 ```
