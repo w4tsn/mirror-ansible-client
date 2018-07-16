@@ -27,7 +27,6 @@ packages:
   - dnf: virt-manager
   - dnf: virt-viewer
   - dnf: telegram-desktop
-  - dnf: flatpak
 
   # Media
   - dnf: gimp
