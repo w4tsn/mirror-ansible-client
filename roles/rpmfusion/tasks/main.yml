@@ -52,3 +52,9 @@
     - rpmfusion_install is changed
   register: rpmfusion_install
   become: true
+
+- name: Force cache expiring
+  command: dnf clean metadata
+  when:
+    - ansible_distribution == "Fedora"
+    - rpmfusion_install is changed
