@@ -13,3 +13,18 @@
     - download
     - packages
   become: true
+
+- name: check if package is installed
+  package:
+    name: compat-ffmpeg28
+    state: latest
+  check_mode: true
+  ignore_errors: true
+  register: ffmpeg28_check
+
+- name: Workaround for compat-ffmpeg
+  dnf:
+    name: "compat-ffmpeg28"
+    state: latest
+  when:
+    - ffmpeg28_check is changed
