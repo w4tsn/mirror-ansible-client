@@ -17,7 +17,6 @@ plugins, so called packages, ready to be installed and used.
 If you are interested in working with your colleagues, try
 [teletype][atom-teletype] and use WebRTC to collaborate.
 
-
 Tips and Tricks
 ---
 
@@ -29,7 +28,6 @@ worries about your shell.
 For the people who prefer the mouse but also want to start Atom in place, this
 repository provides a nautilus extension that add a context menu entry: "Open
 Atom here"
-
 
 [atom-ide]: https://ide.atom.io
 [atom-teletype]: https://teletype.atom.io

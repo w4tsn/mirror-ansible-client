@@ -16,7 +16,6 @@ From a security perspective it's also helpful because it'll warn you when you
 may paste something containing a `sudo` command and asks for confirmation
 for this paste.
 
-
 ---
 
 Additional information:
