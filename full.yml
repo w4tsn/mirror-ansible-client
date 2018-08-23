@@ -18,3 +18,9 @@
     - discord
     - adapta-gtk-theme
     - freeopcua
+    - hugo
+- hosts: clients
+  vars:
+    - hugo_sass: yes
+  roles:
+    - hugo
