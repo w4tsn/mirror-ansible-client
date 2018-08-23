@@ -10,10 +10,11 @@ Usage
 
 Clone the repository, and use `ansible-playbook` to run it.
 
+Optionally in order to use the `optional` roles not included in the default `clients.yml` playbook make a copy of it with the filename `custom.yml`, which is part of `.gitignore` by default.
 
 ### Fedora
 
-```
+```bash
 sudo dnf install git ansible
 git clone https://octo.sh/ansible-client/ansible-client.git
 cd ansible-client
