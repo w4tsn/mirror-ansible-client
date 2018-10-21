@@ -1,5 +1,0 @@
----
-# handlers file for gitkraken
-
-- name: refresh GTK icon cache
-  import_tasks: "clear-gtk-cache.yml"
