@@ -3,10 +3,8 @@
 
 - name: Install gnome enhancements
   dnf: 
-    name: "{{ item }}"
+    name: "{{ packages | map(attribute='dnf') | list }}"
     state: present
-  with_items:
-    - "{{ packages | map(attribute='dnf') | list }}"
   tags:
     - dnf
     - download

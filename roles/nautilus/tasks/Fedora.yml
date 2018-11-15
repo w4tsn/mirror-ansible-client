@@ -3,10 +3,8 @@
 
 - name: Install nautilus packages
   dnf:
-    name: "{{ item }}"
+    name: "{{ nautilus_packages | map(attribute='dnf') | list }}"
     state: present
-  with_items:
-    - "{{ nautilus_packages | map(attribute='dnf') | list }}"
   tags:
     - nautilus
     - dnf
