@@ -1,5 +1,7 @@
 ---
 - hosts: clients
+  vars:
+    - hugo_sass: yes
   roles:
     - sys-upgrade
     - rpmfusion
@@ -18,9 +20,4 @@
     - discord
     - adapta-gtk-theme
     - freeopcua
-    - hugo
-- hosts: clients
-  vars:
-    - hugo_sass: yes
-  roles:
     - hugo
