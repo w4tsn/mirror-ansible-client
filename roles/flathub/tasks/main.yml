@@ -17,6 +17,6 @@
   tags:
     - flatpak
   when:
-    - ansible_version.major >= 2
-    - ansible_version.minor >= 6
+    - ansible_version.major is version('2', '>=')
+    - ansible_version.minor is version('6', '>=')
   become: true

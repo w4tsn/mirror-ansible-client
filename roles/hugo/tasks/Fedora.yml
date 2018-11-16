@@ -14,7 +14,7 @@
       - copr
     when:
       - ansible_distribution == "Fedora"
-      - ansible_distribution_major_version > 26
+      - ansible_distribution_major_version is version('26', '>')
     become: true
 
   - name: Import GPG key
