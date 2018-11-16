@@ -2,6 +2,7 @@
 - hosts: clients
   vars:
     - hugo_sass: yes
+    - hardware_thinkpad_x1_carbon_6th_cpu_throttling_fix: yes
   roles:
     - sys-upgrade
     - rpmfusion
