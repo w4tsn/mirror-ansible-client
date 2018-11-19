@@ -52,3 +52,27 @@ f28:
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
     - 'docker rm -f "$(cat ${container_id})"'
+    
+f29:
+  stage: test
+  tags:
+    - docker
+  variables:
+    GIT_STRATEGY: clone
+    distro: fedora
+    distro_version: 29
+    DOCKER_HOST: "tcp://docker:2375"
+  before_script:
+    - 'docker pull "quay.io/sheogorath/ansible-ci-images:${distro}-${distro_version}"'
+    - 'sed -i "s/True/False/" ansible.cfg'
+  script:
+    - container_id=$(mktemp)
+    - 'docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/:ro "quay.io/sheogorath/ansible-ci-images:${distro}-${distro_version}" > "${container_id}"'
+    - 'docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml --syntax-check'
+    - 'docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml'
+    - docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml | tee ansible.log
+    - >
+      grep -q 'changed=0.*failed=0' ansible.log
+      && (echo 'Idempotence test: pass' && exit 0)
+      || (echo 'Idempotence test: fail' && exit 1)
+    - 'docker rm -f "$(cat ${container_id})"'
