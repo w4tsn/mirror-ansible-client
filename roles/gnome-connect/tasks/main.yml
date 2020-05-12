@@ -18,3 +18,9 @@
     src: /tmp/gsconnect.andyholmes.github.io.zip
     dest: /usr/local/share/gnome-shell/extensions/gsconnect@andyholmes.github.io
   become: true
+
+- name: Install gsconnect nautilus extension
+  dnf:
+    name: nautilus-gsconnect
+    state: present
+  become: true
