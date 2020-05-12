@@ -1,7 +1,0 @@
----
-
-- name: Remove legacy setup
-  file:
-    state: absent
-    path: "{{ gitkraken_install_path }}"
-  become: true

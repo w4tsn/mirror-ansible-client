@@ -1,8 +1,0 @@
----
-
-- name: Install GitKraken from FlatHub
-  flatpak:
-    name: com.axosoft.GitKraken
-    state: present
-    remote: flathub
-  become: true
