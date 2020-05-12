@@ -1,0 +1,22 @@
+---
+
+- name: Install development utilites
+  dnf: 
+    name:
+      - '@Development Tools'
+      - '@Development Libraries'
+      - golang-bin
+      - spyder
+      - npm
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Install development utilities (flatpak)
+  flatpak:
+    name:
+      - com.github.alecaddd.sequeler
+      - com.getpostman.Postman
