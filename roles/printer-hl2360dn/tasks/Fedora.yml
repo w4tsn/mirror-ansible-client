@@ -1,0 +1,11 @@
+---
+
+- name: Install HL 2360dn printer driver dependencies
+  dnf: 
+    name: perl
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true

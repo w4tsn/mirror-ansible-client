@@ -1,0 +1,15 @@
+---
+
+- name: Install OKI printer driver dependencies
+  dnf: 
+    name:   
+      - glibc
+      - libgcc
+      - libstdc++.i686
+      - libusbx
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
