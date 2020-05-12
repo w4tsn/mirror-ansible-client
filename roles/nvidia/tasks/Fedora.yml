@@ -1,0 +1,13 @@
+---
+
+- name: Install nvidia driver packages
+  dnf: 
+    name: akmod-nvidia
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+    - drivers
+    - vga
+  become: true
