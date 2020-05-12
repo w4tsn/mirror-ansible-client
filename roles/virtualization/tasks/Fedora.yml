@@ -1,0 +1,14 @@
+---
+
+- name: Install virtualization utilites
+  dnf: 
+    name:
+      - vagrant
+      - VirtualBox
+      - qemu
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
