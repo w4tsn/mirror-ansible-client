@@ -9,3 +9,14 @@
     - "{{ ansible_os_family }}.yml"
   loop_control:
     loop_var: distro_file
+
+- name: Setup Tilix in bashrc
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    block: |
+      # Tilix
+      if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+              source /etc/profile.d/vte.sh
+      fi
+  tags:
+    - bash
