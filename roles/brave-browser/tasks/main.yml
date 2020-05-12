@@ -1,0 +1,38 @@
+---
+
+- name: Import GPG key
+  rpm_key:
+    state: present
+    key: "https://brave-browser-rpm-release.s3.brave.com/brave-core.asc"
+  tags:
+    - brave
+    - dnf
+    - gpg-key
+    - download
+  become: true
+
+- name: Add official repository
+  yum_repository:
+    state: present
+    name: brave
+    description: Official repository for Brave Browser
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
+    gpgcheck: yes
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  tags:
+    - brave
+    - dnf
+    - gpg-key
+  become: true
+
+- name: Install brave-browser
+  dnf:
+    name: 
+      - brave-browser
+      - brave-keyring
+    state: present
+  tags:
+    - brave
+    - dnf
+    - packages
+  become: true
