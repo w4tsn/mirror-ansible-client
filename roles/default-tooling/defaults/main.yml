@@ -22,22 +22,38 @@ packages:
   - dnf: remmina
   - dnf: vlc
   - dnf: libaacs
+  - flatpak: org.freedesktop.Platform.openh264
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
   - dnf: virt-manager
   - dnf: virt-viewer
+  - flatpak: com.uploadedlobster.peek
+  - dnf: flameshot
+  - flatpak: com.obsproject.Studio
+
+  # Communication
   - dnf: telegram-desktop
+  - flatpak: org.signal.Signal
+  - flatpak: net.jami.Jami
 
   # Media
   - dnf: gimp
   - dnf: krita
   - dnf: darktable
+  - dnf: inkscape
+  - dnf: inkscape-psd
+  - flatpak: com.jgraph.drawio.desktop
+  - dnf: jabref
+  - dnf: audacity
+  - dnf: calibre
+  - dnf: scribus
 
   # Browsers
   - dnf: firefox
   - dnf: chromium
 
   # Passwordsaves
+  - dnf: seahorse
   - dnf: keepassxc
   - dnf: pass
 
@@ -50,3 +66,19 @@ packages:
   # Dictionaries
   - dnf: hunspell-de
   - dnf: aspell-de
+
+  # network
+  - dnf: nmap
+
+  # Advanced audio control including real-time voice modulation
+  - dnf: sox
+  - dnf: pavucontrol
+
+  # ARM utils
+  - dnf: arm-image-installer
+
+  # Music
+  - flatpak: com.spotify.Client
+
+  # FUN
+  - dnf: cmatrix
