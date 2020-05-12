@@ -38,7 +38,7 @@ packages:
   - dnf: chromium
 
   # Passwordsaves
-  - dnf: keepass
+  - dnf: keepassxc
   - dnf: pass
 
   # Fonts
