@@ -1,0 +1,22 @@
+---
+- hosts: gaming-nvidia
+  roles:
+    - sys-upgrade
+    - rpmfusion
+    - hardware
+    - default-tooling
+    - gnome-enhancements
+    - gnome-connect
+    - nautilus
+    - nextcloud-client
+    - riot
+    - vscode
+    - flathub
+    - automated-updates
+    - powerline
+    - brave-browser
+    - development
+    - development-cloud
+    - 3dprinting
+    - gaming-utils
+    - virtualization
