@@ -1,0 +1,11 @@
+---
+
+- name: Install cloud development utilites
+  dnf: 
+    name: awscli
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
