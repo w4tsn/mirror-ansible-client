@@ -1,7 +1,8 @@
 ---
 # tasks file for lenovo carbon 6th gen patch cpu-throttling
 
-- block:
+- name: Fix CPU Throttling Issues
+  block:
   - name: Install msr-tools
     dnf:
       name: msr-tools
