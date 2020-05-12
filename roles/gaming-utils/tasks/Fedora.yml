@@ -1,0 +1,21 @@
+---
+
+- name: Install gaming packages
+  dnf: 
+    name: "{{ packages | union(extended_packages | default([])) | map(attribute='dnf') | list }}"
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Install gaming flatpaks
+  dnf: 
+    name: "{{ packages | union(extended_packages | default([])) | map(attribute='flatpak') | list }}"
+    state: present
+  tags:
+    - flatpak
+    - download
+    - packages
+  become: true

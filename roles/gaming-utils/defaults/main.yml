@@ -1,0 +1,16 @@
+---
+# defaults file for default-tooling
+
+extend_packages: []
+
+packages:
+  # Communication
+  flatpak: com.discordapp.Discord
+  flatpak: com.skype.Client
+  flatpak: net.jami.Jami
+
+  # Libraries and Managers
+  flatpak: com.valvesoftware.Steam
+
+  # Keyboard Drivers
+  - dnf: ckb-next # open source corsair gaming utility
