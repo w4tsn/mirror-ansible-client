@@ -11,6 +11,16 @@
     - packages
   become: true
 
+- name: Install default flatpaks
+  dnf: 
+    name: "{{ packages | union(extended_packages | default([])) | map(attribute='flatpak') | list }}"
+    state: present
+  tags:
+    - flatpak
+    - download
+    - packages
+  become: true
+
 - name: check if package is installed
   package:
     name: compat-ffmpeg28
