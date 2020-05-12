@@ -1,0 +1,14 @@
+---
+
+- name: Install powerline packages
+  dnf: 
+    name:
+      - powerline
+      - powerline-fonts
+      - vim-powerline
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
