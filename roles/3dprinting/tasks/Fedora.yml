@@ -1,0 +1,13 @@
+---
+
+- name: Install 3D printing utilites
+  dnf: 
+    name:
+      - slic3r
+      - openscad
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
