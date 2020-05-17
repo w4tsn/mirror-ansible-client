@@ -5,12 +5,12 @@ extend_packages: []
 
 packages:
   # Communication
-  flatpak: com.discordapp.Discord
-  flatpak: com.skype.Client
-  flatpak: net.jami.Jami
+  - flatpak: com.discordapp.Discord
+  - flatpak: com.skype.Client
+  - flatpak: net.jami.Jami
 
   # Libraries and Managers
-  flatpak: com.valvesoftware.Steam
+  - flatpak: com.valvesoftware.Steam
 
   # Keyboard Drivers
   - dnf: ckb-next # open source corsair gaming utility
