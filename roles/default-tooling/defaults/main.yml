@@ -22,7 +22,6 @@ packages:
   - dnf: remmina
   - dnf: vlc
   - dnf: libaacs
-  - flatpak: org.freedesktop.Platform.openh264
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
   - dnf: virt-manager
@@ -42,8 +41,7 @@ packages:
   - dnf: darktable
   - dnf: inkscape
   - dnf: inkscape-psd
-  - flatpak: com.jgraph.drawio.desktop
-  - dnf: jabref
+  - flatpak: com.jgraph.drawio
   - dnf: audacity
   - dnf: calibre
   - dnf: scribus
