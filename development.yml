@@ -4,6 +4,8 @@
     - sys-upgrade
     - rpmfusion
     - hardware
+    - flathub
+    - automated-updates
     - default-tooling
     - gnome-enhancements
     - gnome-connect
@@ -11,8 +13,6 @@
     - nextcloud-client
     - riot
     - vscode
-    - flathub
-    - automated-updates
     - powerline
     - brave-browser
     - development
