@@ -1,7 +1,7 @@
 ---
 # tasks file for rpmfusion
 
-- name: Add RPMFusion GPG key
+- name: Add RPMFusion GPG key (free)
   rpm_key:
     state: present
     key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}"
@@ -14,8 +14,21 @@
     - ansible_distribution == "Fedora"
   become: true
 
+- name: Add RPMFusion GPG key (nonfree)
+  rpm_key:
+    state: present
+    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_major_version }}"
+  tags:
+    - rpmfusion
+    - dnf
+    - gpg-key
+    - download
+  when:
+    - ansible_distribution == "Fedora"
+    - rpmfusion_nonfree
+  become: true
 
-- name: Check RPMFusion is installed
+- name: Check RPMFusion (free) is installed
   dnf:
     name: "rpmfusion-free-release"
     state: present
@@ -23,7 +36,15 @@
   register: rpmfusion_test
   become: true
 
-- name: Install RPMFusion
+- name: Check RPMFusion (nonfree) is installed
+  dnf:
+    name: "rpmfusion-nonfree-release"
+    state: present
+  ignore_errors: true
+  register: rpmfusion_test_nonfree
+  become: true
+
+- name: Install RPMFusion (free)
   dnf:
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
@@ -38,7 +59,23 @@
   register: rpmfusion_install
   become: true
 
-- name: Update RPMFusion
+- name: Install RPMFusion (nonfree)
+  dnf:
+    name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+  tags:
+    - rpmfusion
+    - dnf
+    - packages
+    - download
+  when:
+    - ansible_distribution == "Fedora"
+    - rpmfusion_test_nonfree is failed
+    - rpmfusion_nonfree
+  register: rpmfusion_install_nonfree
+  become: true
+
+- name: Update RPMFusion (free)
   dnf:
     name: "rpmfusion-free-release"
     state: latest
@@ -53,8 +90,25 @@
   register: rpmfusion_install
   become: true
 
+- name: Update RPMFusion (nonfree)
+  dnf:
+    name: "rpmfusion-nonfree-release"
+    state: latest
+  tags:
+    - rpmfusion
+    - dnf
+    - packages
+    - download
+  when:
+    - ansible_distribution == "Fedora"
+    - rpmfusion_install_nonfree is changed
+    - rpmfusion_nonfree
+  register: rpmfusion_install_nonfree
+  become: true
+
 - name: Force cache expiring
   command: dnf clean metadata
   when:
     - ansible_distribution == "Fedora"
     - rpmfusion_install is changed
+    - rpmfusion_install_nonfree is changed

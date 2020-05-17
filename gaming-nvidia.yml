@@ -17,3 +17,5 @@
     - brave-browser
     - nvidia
     - gaming-utils
+  vars:
+    rpmfusion_nonfree: true
