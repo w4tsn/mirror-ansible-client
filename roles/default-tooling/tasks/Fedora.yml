@@ -3,7 +3,7 @@
 
 - name: Install default packages
   dnf: 
-    name: "{{ packages | union(extended_packages | default([])) | map(attribute='dnf') | list }}"
+    name: "{{ packages | union(extended_packages | default([])) | selectattr('dnf', 'default') | map(attribute='dnf') | list }}"
     state: present
   tags:
     - dnf
@@ -13,8 +13,9 @@
 
 - name: Install default flatpaks
   dnf: 
-    name: "{{ packages | union(extended_packages | default([])) | map(attribute='flatpak') | list }}"
+    name: "{{ item }}"
     state: present
+  with_items: "{{ packages | union(extended_packages | default([])) | selectattr('flatpak', 'default') | map(attribute='flatpak') | list }}"
   tags:
     - flatpak
     - download
