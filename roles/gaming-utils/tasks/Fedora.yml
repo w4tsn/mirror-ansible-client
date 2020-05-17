@@ -2,7 +2,7 @@
 
 - name: Install gaming packages
   dnf: 
-    name: "{{ packages | selectattr('dnf', 'default') | map(attribute='dnf') | list }}"
+    name: "{{ packages | selectattr('dnf', 'defined') | map(attribute='dnf') | list }}"
     state: present
   tags:
     - dnf
@@ -14,7 +14,7 @@
   dnf: 
     name: "{{ item }}"
     state: present
-  with_items: "{{ packages | selectattr('flatpak', 'default') | map(attribute='flatpak') | list }}"
+  with_items: "{{ packages | selectattr('flatpak', 'defined') | map(attribute='flatpak') | list }}"
   tags:
     - flatpak
     - download
