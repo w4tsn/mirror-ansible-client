@@ -12,7 +12,7 @@
   become: true
 
 - name: Install default flatpaks
-  dnf: 
+  flatpak: 
     name: "{{ item }}"
     state: present
   with_items: "{{ packages | union(extended_packages | default([])) | selectattr('flatpak', 'defined') | map(attribute='flatpak') | list }}"
