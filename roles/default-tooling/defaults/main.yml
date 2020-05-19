@@ -67,6 +67,7 @@ packages:
 
   # network
   - dnf: nmap
+  - dnf: speedtest-cli
 
   # Advanced audio control including real-time voice modulation
   - dnf: sox
