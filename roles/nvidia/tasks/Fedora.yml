@@ -11,3 +11,15 @@
     - drivers
     - vga
   become: true
+
+- name: Install nvidia x11 cuda driver
+  dnf: 
+    name: xorg-x11-drv-nvidia-cuda
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+    - drivers
+    - vga
+  become: true
