@@ -1,6 +1,9 @@
 ---
 # defaults file for default-tooling
 
+gamingutils_steam_flatpak_library: "{{ ansible_env.HOME }}/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps/common"
+gamingutils_steam_library: "{{ ansible_env.HOME }}/.local/share/Steam/steamapps/common"
+
 extend_packages: []
 
 packages:
@@ -10,7 +13,7 @@ packages:
   - flatpak: net.jami.Jami
 
   # Libraries and Managers
-  - flatpak: com.valvesoftware.Steam
+  - dnf: steam
   - dnf: gamehub
   - dnf: lutris
 

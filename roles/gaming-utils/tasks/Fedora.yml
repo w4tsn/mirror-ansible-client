@@ -1,5 +1,14 @@
 ---
 
+- name: Remove Steam flatpak
+  flatpak:
+    name: com.valvesoftware.Steam
+    state: absent
+  tags:
+    - flatpak
+    - packages
+  become: true
+
 - name: Install gaming packages
   dnf: 
     name: "{{ packages | selectattr('dnf', 'defined') | map(attribute='dnf') | list }}"
