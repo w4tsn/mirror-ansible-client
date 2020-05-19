@@ -11,6 +11,8 @@ packages:
 
   # Libraries and Managers
   - flatpak: com.valvesoftware.Steam
+  - dnf: gamehub
+  - dnf: lutris
 
   # Keyboard Drivers
   - dnf: ckb-next # open source corsair gaming utility
