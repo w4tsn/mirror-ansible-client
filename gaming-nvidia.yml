@@ -1,5 +1,5 @@
 ---
-- hosts: gaming-nvidia
+- hosts: localhost
   roles:
     - sys-upgrade
     - rpmfusion
