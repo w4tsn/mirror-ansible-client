@@ -16,6 +16,7 @@ packages:
   - dnf: ansible
   - dnf: thefuck
   - dnf: stow
+  - dnf: mediawriter
 
   # Desktop utils
   - dnf: tilix
