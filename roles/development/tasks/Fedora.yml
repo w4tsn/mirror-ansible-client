@@ -2,13 +2,14 @@
 
 - name: Install development utilites
   dnf: 
-    name:
-      - '@Development Tools'
-      - '@Development Libraries'
-      - golang-bin
-      - spyder
-      - npm
+    name: "{{ item }}"
     state: present
+  with_items:
+    - '@Development Tools'
+    - '@Development Libraries'
+    - golang-bin
+    - python3-spyder
+    - npm
   tags:
     - dnf
     - download
@@ -17,6 +18,12 @@
 
 - name: Install development utilities (flatpak)
   flatpak:
-    name:
-      - com.github.alecaddd.sequeler
-      - com.getpostman.Postman
+    name: "{{ item }}"
+  with_items:
+    - com.github.alecaddd.sequeler
+    - com.getpostman.Postman
+  tags:
+    - flatpak
+    - download
+    - packages
+  become: true
