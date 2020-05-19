@@ -1,0 +1,20 @@
+---
+# tasks file for tray icons
+#
+
+- name: Download Tray Icons
+  get_url:
+    url: "{{ trayicons_url }}"
+    dest: /tmp/gnome-trayicons.zip
+
+- name: Make sure global gnome extension directory is in place
+  file:
+    path: "/usr/local/share/gnome-shell/extensions/tray-icons@zhangkaizhao.com"
+    state: directory
+  become: true
+
+- name: Unpack Tray Icons as global extension
+  unarchive:
+    src: /tmp/gnome-trayicons.zip
+    dest: /usr/local/share/gnome-shell/extensions/tray-icons@zhangkaizhao.com
+  become: true

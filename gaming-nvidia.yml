@@ -9,6 +9,7 @@
     - default-tooling
     - gnome-enhancements
     - gnome-connect
+    - gnome-trayicons
     - nautilus
     - nextcloud-client
     - riot
