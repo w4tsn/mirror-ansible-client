@@ -30,6 +30,7 @@ packages:
   - flatpak: com.uploadedlobster.peek
   - dnf: flameshot
   - flatpak: com.obsproject.Studio
+  - dnf: pulseeffects
 
   # Communication
   - dnf: telegram-desktop
