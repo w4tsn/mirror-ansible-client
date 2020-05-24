@@ -1,0 +1,52 @@
+---
+# tasks file for gnome-theme-orchis
+#
+
+- name: Download orchis theme
+  get_url:
+    url: "{{ gnome_theme_orchis_url }}"
+    dest: /tmp/orchis.tar.xz
+
+- name: Make sure global theme directory is in place
+  file:
+    path: /usr/share/themes/Orchis
+    state: directory
+  become: true
+
+- name: Unpack Orchis archive as global theme
+  unarchive:
+    src: /tmp/orchis.tar.xz
+    dest: /usr/share/themes/Orchis
+  become: true
+
+- name: Set Orchis Theme as Shell and Application theme
+  dconf:
+    key: "{{ item }}"
+    value: "'Orchis'"
+    state: present
+  with_items:
+    - /org/gnome/shell/extensions/user-theme/name
+    - /org/gnome/desktop/interface/gtk-theme
+    - /org/gnome/wm/preferences/theme
+  tags:
+    - gnome
+    - themes
+
+- name: Install numix circle icon theme
+  dnf:
+    name: numix-icon-theme-circle
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Set numix circle theme
+  dconf:
+    key: /org/gnome/desktop/interface/icon-theme
+    value: "'Numix-Circle'"
+    state: present
+  tags:
+    - gnome
+    - themes
