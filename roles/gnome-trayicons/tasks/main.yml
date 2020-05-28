@@ -17,4 +17,7 @@
   unarchive:
     src: /tmp/gnome-trayicons.zip
     dest: /usr/local/share/gnome-shell/extensions/tray-icons@zhangkaizhao.com
+    extra_opts:
+      - "--strip"
+      - "1"
   become: true
