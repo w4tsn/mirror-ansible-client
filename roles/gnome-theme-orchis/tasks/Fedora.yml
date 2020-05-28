@@ -2,21 +2,31 @@
 # tasks file for gnome-theme-orchis
 #
 
-- name: Download orchis theme
-  get_url:
-    url: "{{ gnome_theme_orchis_url }}"
-    dest: /tmp/orchis.tar.xz
-
-- name: Make sure global theme directory is in place
-  file:
-    path: /usr/share/themes/Orchis
-    state: directory
+- name: Install dependencies
+  dnf:
+    name:
+      - gtk-murrine-engine
+      - gnome-themes-extra
+    state: present
+  tags:
+    - dnf
+    - packages
+    - download
   become: true
 
-- name: Unpack Orchis archive as global theme
-  unarchive:
-    src: /tmp/orchis.tar.xz
-    dest: /usr/share/themes/Orchis
+- name: Download Orchis Theme
+  git:
+    repo: "{{ gnome_theme_orchis_url }}"
+    dest: /tmp/Orchis
+  tags:
+    - git
+    - download
+
+- name: Install Orchis Theme globally
+  command: /tmp/Orchis/install.sh
+  args:
+    chdir: /tmp/Orchis
+    creates: /usr/share/themes/Orchis
   become: true
 
 - name: Set Orchis Theme as Shell and Application theme
@@ -27,7 +37,6 @@
   with_items:
     - /org/gnome/shell/extensions/user-theme/name
     - /org/gnome/desktop/interface/gtk-theme
-    - /org/gnome/wm/preferences/theme
   tags:
     - gnome
     - themes
