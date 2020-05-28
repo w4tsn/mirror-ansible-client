@@ -5,6 +5,7 @@ packages:
   # Shells & config
   - dnf: gnome-tweak-tool
   - dnf: gnome-shell-extension-user-theme
+  - dnf: gnome-shell-extension-openweather
   
   # Desktop utils
   - dnf: tilix-nautilus
