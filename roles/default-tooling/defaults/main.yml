@@ -19,6 +19,7 @@ packages:
   - dnf: mediawriter
 
   # Desktop utils
+  - flatpak: com.bitwarden.desktop
   - dnf: tilix
   - dnf: remmina
   - dnf: vlc
