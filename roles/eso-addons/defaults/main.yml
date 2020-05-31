@@ -1,0 +1,8 @@
+---
+# defaults file for eso-addons
+
+esoaddons_directory_activated: "{{ ansible_env.HOME }}/.local/share/Steam/steamapps/compatdata/306130/pfx/drive_c/users/steamuser/My\ Documents/Elder\ Scrolls\ Online/live/AddOns/"
+esoaddons_directory: "{{ ansible_env.HOME }}/.local/share/Cadwell/AddOns"
+esoaddons_addons: []
+#  - name: ActionDurationReminder
+#    url: https://www.esoui.com/downloads/download1536-ActionDurationReminder
