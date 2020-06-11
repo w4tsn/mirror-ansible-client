@@ -29,3 +29,36 @@
     - download
     - packages
   become: true
+
+- name: Install protontricks
+  block:
+  - name: Install protontricks dependencies
+    dnf:
+      name:
+        - python3-pip
+        - python3-setuptools
+        - python3-libs
+      state: present
+    tags:
+      - dnf
+      - download
+      - packages
+    become: true
+  - name: Install pipx
+    pip:
+      name: pipx
+      extra_args: --user
+    tags:
+      - pip
+      - python
+      - download
+      - packages
+  - name: Install protontricks
+    pip:
+      name: protontricks
+      executable: pipx
+    tags:
+      - pipx
+      - python
+      - download
+      - packages
