@@ -22,7 +22,7 @@
     - packages
   become: true
 
-- name: check if package is installed
+- name: Check if compat-ffmpeg package is installed
   package:
     name: compat-ffmpeg28
     state: latest
