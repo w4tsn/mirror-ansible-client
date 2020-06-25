@@ -1,0 +1,5 @@
+---
+# defaults file for gnome sound output device chooser
+
+gse_version: 30
+gse_url: "https://github.com/kgshank/gse-sound-output-device-chooser/archive/{{ gse_version }}.tar.gz"
