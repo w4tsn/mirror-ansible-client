@@ -1,0 +1,55 @@
+---
+# tasks file for xow
+#
+
+- name: Install setup dependencies
+  dnf:
+    name: "{{ xow_install_dependencies }}"
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Install package dependencies
+  dnf:
+    name: "{{ xow_build_dependencies }}"
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Download driver install files from git repo
+  git:
+    repo: https://github.com/medusalix/xow
+    dest: /tmp/xow
+  tags:
+    - git
+    - download
+
+- name: Build driver
+  command: make BUILD=RELEASE
+
+- name: Install driver
+  command: make install
+  args:
+    chdir: /tmp/xow
+    creates: /etc/systemd/system/xow.service
+  become: true
+  notify:
+    - enable xow
+    - start xow
+
+- name: Cleanup build dependencies
+  dnf:
+    name: "{{ xow_build_dependencies }}"
+    state: absent
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+  when: xow_build_cleanup

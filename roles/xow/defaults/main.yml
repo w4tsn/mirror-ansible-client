@@ -1,0 +1,11 @@
+---
+# defaults file for xow
+
+xow_install_dependencies:
+  - git
+  - curl
+xow_build_dependencies:
+  - libusb-devel
+  - cabextract
+  - gcc-c++
+xow_build_cleanup: true

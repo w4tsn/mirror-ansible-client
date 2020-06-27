@@ -1,0 +1,12 @@
+---
+
+- name: enable xow
+  systemd:
+    name: xow
+    enabled: yes
+  become: true
+
+- name: start xow
+  systemd:
+    name: xow
+    state: started
