@@ -14,10 +14,6 @@
     - gnome-theme-orchis
     - nautilus
     - nextcloud-client
-    - riot
-    - vscode
-    - powerline
-    - brave-browser
     - nvidia
     - gaming-utils
   vars:

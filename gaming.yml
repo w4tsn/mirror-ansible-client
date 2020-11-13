@@ -14,11 +14,6 @@
     - gnome-theme-orchis
     - nautilus
     - nextcloud-client
-    - riot
-    - vscode
-    - atom
-    - powerline
-    - development
-    - development-cloud
-    - 3dprinting
-    - virtualization
+    - gaming-utils
+  vars:
+    rpmfusion_nonfree: true
