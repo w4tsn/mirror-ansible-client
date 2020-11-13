@@ -28,8 +28,6 @@ packages:
   - dnf: thunderbird-enigmail
   - dnf: virt-manager
   - dnf: virt-viewer
-  - flatpak: com.uploadedlobster.peek
-  - dnf: flameshot
   - flatpak: com.obsproject.Studio
   - dnf: pulseeffects
 
