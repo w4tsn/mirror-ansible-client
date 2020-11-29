@@ -1,10 +1,19 @@
 ---
 # tasks file for rpmfusion
 
+- name: "Select tasks for {{ ansible_distribution }} {{ ansible_distribution_major_version }}"
+  include_vars: "{{ distro_file }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: distro_file
+
 - name: Add RPMFusion GPG key (free)
   rpm_key:
     state: present
-    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}"
+    key: "{{ rpmfusion_free_key_url }}"
   tags:
     - rpmfusion
     - dnf
@@ -17,7 +26,7 @@
 - name: Add RPMFusion GPG key (nonfree)
   rpm_key:
     state: present
-    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_major_version }}"
+    key: "{{ rpmfusion_nonfree_key_url }}"
   tags:
     - rpmfusion
     - dnf
