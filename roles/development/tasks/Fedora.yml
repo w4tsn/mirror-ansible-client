@@ -10,6 +10,7 @@
     - golang-bin
     - python3-spyder
     - npm
+    - ShellCheck
   tags:
     - dnf
     - download
