@@ -3,77 +3,26 @@
 
 - name: Fix CPU Throttling Issues
   block:
-  - name: Install msr-tools
-    dnf:
-      name: msr-tools
-      state: present
+  - name: Enable COPR
+    command: "dnf copr enable -y abn/throttled"
+    args:
+      creates: "_copr:copr.fedorainfracloud.org:abn:throttled.repo"
+      warn: false
     tags:
-      - lenovo
-      - carbon
-      - 6th
-      - patches
       - dnf
-      - packages
+      - copr
     become: true
 
-  - name: Install CPU-Throttling patch script
-    copy:
-      src: cpu-throttling.sh
-      dest: /usr/local/bin/cpu-throttling.sh
-      mode: 0755
-    register: cpu_throttling_script
-    tags:
-      - lenovo
-      - carbon
-      - 6th
-      - patches
-    become: true
-
-  - name: Install CPU-Throttling systemd service
-    when: cpu_throttling_script is succeeded
-    copy:
-      src: cpu-throttling.service
-      dest: /etc/systemd/system/cpu-throttling.service
-    register: cpu_throttling_service
-    tags:
-      - lenovo
-      - carbon
-      - 6th
-      - patches
-    become: true
-
-  - name: Install CPU-throttling systemd timer
-    when: cpu_throttling_service is succeeded
-    copy:
-      src: cpu-throttling.timer
-      dest: /etc/systemd/system/cpu-throttling.timer
-    register: cpu_throttling_timer
-    tags:
-      - lenovo
-      - carbon
-      - 6th
-      - patches
-    become: true
-
-  - name: Enable CPU-throttling systemd service
-    when: cpu_throttling_service is succeeded
+  - name: Enable systemd service
     systemd:
-      name: cpu-throttling.service
-      enabled: yes
-      state: started
-      daemon_reload: yes
-    become: true
-    notify: "Throttling patch restart notification"
-
-  - name: Enable CPU-throttling systemd timer
-    when: cpu_throttling_timer is succeeded
-    systemd:
-      name: cpu-throttling.timer
+      name: throttled.service
       enabled: yes
       state: started
       daemon_reload: yes
     become: true
 
   when:
+    - ansible_distribution == "Fedora"
+    - ansible_distribution_major_version is version('32', '>')
     - hardware_thinkpad_x1_carbon_6th_cpu_throttling_fix is defined
     - hardware_thinkpad_x1_carbon_6th_cpu_throttling_fix
