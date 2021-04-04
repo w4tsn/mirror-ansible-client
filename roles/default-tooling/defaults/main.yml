@@ -35,6 +35,7 @@ packages:
   - dnf: telegram-desktop
   - flatpak: org.signal.Signal
   - flatpak: net.jami.Jami
+  - flatpak: im.riot.Riot # Element
 
   # Media
   - dnf: gimp
