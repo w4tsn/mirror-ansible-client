@@ -1,0 +1,15 @@
+---
+
+- import_playbook: base.yml
+- import_playbook: gnome.yml
+
+- hosts: localhost
+  roles:
+    - vscode
+    - atom
+    - development
+    - development-cloud
+    - 3dprinting
+    - virtualization
+    - ostree
+    - containers

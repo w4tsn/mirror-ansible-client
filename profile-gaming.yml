@@ -1,0 +1,10 @@
+---
+
+- import_playbook: base.yml
+- import_playbook: gnome.yml
+
+- hosts: localhost
+  roles:
+    - gaming-utils
+  vars:
+    rpmfusion_nonfree: true

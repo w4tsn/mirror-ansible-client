@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  roles:
+    - gnome-enhancements
+    - gnome-trayicons
+    - gnome-gse
+    - gnome-theme-orchis
+    - gnome-gtile
+    - nautilus

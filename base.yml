@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  roles:
+    - sys-upgrade
+    - rpmfusion
+    - hardware
+    - flathub
+    - automated-updates
+    - default-tooling
+    - nextcloud-client
+    - powerline
