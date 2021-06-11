@@ -18,24 +18,27 @@ packages:
   - dnf: stow
   - dnf: mediawriter
 
+  # Archives
+  - dnf: unzip
+
   # Desktop utils
   - flatpak: com.bitwarden.desktop
   - dnf: tilix
   - dnf: remmina
-  - dnf: vlc
-  - dnf: libaacs
   - dnf: thunderbird
   - dnf: thunderbird-enigmail
-  - dnf: virt-manager
-  - dnf: virt-viewer
-  - flatpak: com.obsproject.Studio
-  - dnf: pulseeffects
+  - flatpak: org.onlyoffice.desktopeditors
+
+  # Security
+  - dnf: yubikey-manager
 
   # Communication
   - dnf: telegram-desktop
   - flatpak: org.signal.Signal
   - flatpak: net.jami.Jami
+  - flatpak: org.jitsi.jitsi-meet
   - flatpak: im.riot.Riot # Element
+  - flatpak: com.microsoft.Teams
 
   # Media
   - dnf: gimp
@@ -46,11 +49,13 @@ packages:
   - flatpak: com.jgraph.drawio
   - dnf: audacity
   - dnf: calibre
-  - dnf: scribus
+  - flatpak: org.kde.kdenlive
+  - flatpak: com.obsproject.Studio
+  - dnf: vlc
+  - dnf: libaacs
 
   # Browsers
   - dnf: firefox
-  - dnf: chromium
 
   # Passwordsaves
   - dnf: seahorse
@@ -67,9 +72,10 @@ packages:
   - dnf: hunspell-de
   - dnf: aspell-de
 
-  # network
+  # Network
   - dnf: nmap
   - dnf: speedtest-cli
+  - dnf: wireguard-tools
 
   # Advanced audio control including real-time voice modulation
   - dnf: sox

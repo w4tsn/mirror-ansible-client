@@ -8,7 +8,6 @@
     - '@Development Tools'
     - '@Development Libraries'
     - golang-bin
-    - python3-spyder
     - npm
     - ShellCheck
   tags:

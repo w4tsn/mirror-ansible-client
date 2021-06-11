@@ -6,6 +6,9 @@
       - vagrant
       - VirtualBox
       - qemu
+      - virt-manager
+      - virt-viewer
+      - qemu-system-aarch64
     state: present
   tags:
     - dnf
