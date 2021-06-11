@@ -22,3 +22,30 @@
       fi
   tags:
     - bash
+
+- name: Create config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/powerline"
+    state: directory
+
+- name: Create themes directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/powerline/themes/shell"
+    state: directory
+
+- name: Create colorschemes directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/powerline/colorschemes"
+    state: directory
+
+- name: Setup configuration files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/.config/powerline/{{ item.dest }}"
+  loop:
+    - src: colorschemes.json
+      dest: colorschemes/default.json
+    - src: config.json
+      dest: config.json
+    - src: left_only.json
+      dest: themes/shell/left_only.json
