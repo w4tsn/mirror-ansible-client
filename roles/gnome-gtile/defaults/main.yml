@@ -1,0 +1,5 @@
+---
+# defaults file for gtile
+
+gtile_version: 43
+gtile_url: "https://extensions.gnome.org/extension-data/gTilevibou.v{{ gtile_version }}.shell-extension.zip"

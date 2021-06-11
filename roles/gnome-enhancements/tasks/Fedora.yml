@@ -10,3 +10,13 @@
     - download
     - packages
   become: true
+
+- name: Install gnome extensions app
+  dnf:
+    name: gnome-extensions-app
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true

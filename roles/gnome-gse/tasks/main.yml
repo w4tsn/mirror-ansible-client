@@ -5,7 +5,7 @@
 - name: Download gse
   get_url:
     url: "{{ gse_url }}"
-    dest: /tmp/sound-output-device-chooser.kgshank.tar.gz
+    dest: /tmp/sound-output-device-chooser.kgshank.zip
 
 - name: Make sure global gnome extension directory is in place
   file:
@@ -15,9 +15,6 @@
 
 - name: Unpack gse as global extension
   unarchive:
-    src: /tmp/sound-output-device-chooser.kgshank.tar.gz
+    src: /tmp/sound-output-device-chooser.kgshank.zip
     dest: /usr/local/share/gnome-shell/extensions/sound-output-device-chooser@kgshank.net
-    extra_opts:
-      - "--strip"
-      - "2"
   become: true

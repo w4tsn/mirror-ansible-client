@@ -1,5 +1,5 @@
 ---
 # defaults file for gnome-tray-icons
 
-trayicons_version: 4
-trayicons_url: "https://github.com/zhangkaizhao/gnome-shell-extension-tray-icons/archive/v{{ trayicons_version }}.tar.gz"
+trayicons_version: 6
+trayicons_url: "https://extensions.gnome.org/extension-data/tray-iconszhangkaizhao.com.v{{ trayicons_version }}.shell-extension.zip"

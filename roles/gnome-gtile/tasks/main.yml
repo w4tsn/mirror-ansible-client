@@ -1,0 +1,20 @@
+---
+# tasks file for gtile
+#
+
+- name: Download gtile
+  get_url:
+    url: "{{ gtile_url }}"
+    dest: /tmp/gtile.zip
+
+- name: Make sure global gnome extension directory is in place
+  file:
+    path: "/usr/local/share/gnome-shell/extensions/gTile@vibou"
+    state: directory
+  become: true
+
+- name: Unpack gtile as global extension
+  unarchive:
+    src: /tmp/gtile.zip
+    dest: /usr/local/share/gnome-shell/extensions/gTile@vibou
+  become: true

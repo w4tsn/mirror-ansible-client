@@ -5,7 +5,7 @@
 - name: Download Tray Icons
   get_url:
     url: "{{ trayicons_url }}"
-    dest: /tmp/gnome-trayicons.zhangkaizhao.tar.gz
+    dest: /tmp/gnome-trayicons.zhangkaizhao.zip
 
 - name: Make sure global gnome extension directory is in place
   file:
@@ -15,9 +15,6 @@
 
 - name: Unpack Tray Icons as global extension
   unarchive:
-    src: /tmp/gnome-trayicons.zhangkaizhao.tar.gz
+    src: /tmp/gnome-trayicons.zhangkaizhao.zip
     dest: /usr/local/share/gnome-shell/extensions/tray-icons@zhangkaizhao.com
-    extra_opts:
-      - "--strip"
-      - "1"
   become: true

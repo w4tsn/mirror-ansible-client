@@ -1,10 +1,10 @@
 galaxy_info:
-  author: Christoph Kern
-  description: Installs GSConnect for Gnome
+  author: Alexander Wellbrock
+  description: Installs gTile for Gnome
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
-  issue_tracker_url: https://github.com/SISheogorath/ansible-client/issues
+  issue_tracker_url: https://github.com/w4tsn/ansible-client/issues
 
   license: GPLv3
 
