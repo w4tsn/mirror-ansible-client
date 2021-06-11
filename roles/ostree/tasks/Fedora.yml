@@ -1,0 +1,13 @@
+---
+# tasks file for ostree
+
+- name: Install ostree packages and tools
+  dnf: 
+    name:
+      - rpm-ostree
+    state: present
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
