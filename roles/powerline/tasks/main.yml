@@ -23,6 +23,24 @@
   tags:
     - bash
 
+- name: Make sure vimrc is present
+  file:
+    path: "{{ ansible_env.HOME }}/.vimrc"
+    state: touch
+  tags:
+    - vim
+
+- name: Setup Powerline in vimrc
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.vimrc"
+    block: |
+      # Powerline
+      python3 from powerline.vim import setup as powerline_setup
+      python3 powerline_setup()
+      python3 del powerline_setup
+  tags:
+    - vim
+
 - name: Create config directory
   file:
     path: "{{ ansible_env.HOME }}/.config/powerline"
