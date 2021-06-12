@@ -9,12 +9,11 @@
 
 - name: Make sure global gnome extension directory is in place
   file:
-    path: "/usr/local/share/gnome-shell/extensions/gTile@vibou"
+    path: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/gTile@vibou"
     state: directory
-  become: true
+    mode: 0755
 
 - name: Unpack gtile as global extension
   unarchive:
     src: /tmp/gtile.zip
-    dest: /usr/local/share/gnome-shell/extensions/gTile@vibou
-  become: true
+    dest: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/gTile@vibou"
