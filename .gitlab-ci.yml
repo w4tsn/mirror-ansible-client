@@ -1,9 +1,8 @@
 ---
 
 .fedora:
+  image: docker.io/library/fedora:34
   stage: test
-  tags:
-    - podman
   variables:
     GIT_STRATEGY: clone
     distro: fedora
