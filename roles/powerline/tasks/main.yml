@@ -72,3 +72,9 @@
       dest: config.json
     - src: left_only.json
       dest: themes/shell/left_only.json
+
+- name: Install terminal powerline font
+  copy:
+    src: "SourceCodeProForPowerline.otf"
+    dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodeProForPowerline.otf"
+    mode: 0640
