@@ -20,3 +20,12 @@
       fi
   tags:
     - bash
+
+- name: Setup thefuck in bashrc
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    block: |
+      # thefuck
+      eval $(thefuck --alias)
+  tags:
+    - bash
