@@ -1,28 +1,29 @@
 ---
 # tasks file for lenovo carbon 6th gen patch cpu-throttling
 
-- name: Fix CPU Throttling Issues
-  block:
-  - name: Enable COPR
-    command: "dnf copr enable -y abn/throttled"
-    args:
-      creates: "_copr:copr.fedorainfracloud.org:abn:throttled.repo"
-      warn: false
-    tags:
-      - dnf
-      - copr
-    become: true
+- name: Install hardware monitoring tools
+  dnf:
+    name:
+      - s-tui
+      - powertop
+      - tlp
+    state: present
+  become: true
+  tags:
+    - dnf
+    - packages
+    - download
 
-  - name: Enable systemd service
-    systemd:
-      name: throttled.service
-      enabled: yes
-      state: started
-      daemon_reload: yes
-    become: true
-
+- name: Fix TrackPoint and TrackPad conflict issue
+  copy:
+    src: psmouse.conf
+    dest: /etc/modprobe.d/psmouse.conf
+    owner: root
+    group: root
+    mode: 0600
+  become: true
+  tags:
+    - modules
   when:
-    - ansible_distribution == "Fedora"
-    - ansible_distribution_major_version is version('32', '>')
-    - hardware_thinkpad_x1_carbon_6th_cpu_throttling_fix is defined
-    - hardware_thinkpad_x1_carbon_6th_cpu_throttling_fix
+    - hardware_thinkpad_x1_carbon_6th_psmouse_fix is defined
+    - hardware_thinkpad_x1_carbon_6th_psmouse_fix
