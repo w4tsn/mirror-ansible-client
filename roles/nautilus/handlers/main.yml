@@ -1,7 +1,0 @@
----
-# Nautilus handlers
-#
-
-- name: Nautilus python extension notification
-  debug:
-    msg: "New nautilus python extensions become available after next login."

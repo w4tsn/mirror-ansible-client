@@ -54,4 +54,3 @@
     - nautilus-python
     - nautlius-python-extension
   become: true
-  notify: "Nautilus python extension notification"
