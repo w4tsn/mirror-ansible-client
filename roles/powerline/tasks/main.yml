@@ -27,6 +27,7 @@
   file:
     path: "{{ ansible_env.HOME }}/.vimrc"
     state: touch
+    mode: 0640
   tags:
     - vim
 
@@ -34,10 +35,10 @@
   blockinfile:
     path: "{{ ansible_env.HOME }}/.vimrc"
     block: |
-      # Powerline
       python3 from powerline.vim import setup as powerline_setup
       python3 powerline_setup()
       python3 del powerline_setup
+    marker: "\" { mark } ANSIBLE_MANAGED_BLOCK"
   tags:
     - vim
 
@@ -45,21 +46,25 @@
   file:
     path: "{{ ansible_env.HOME }}/.config/powerline"
     state: directory
+    mode: 0750
 
 - name: Create themes directory
   file:
     path: "{{ ansible_env.HOME }}/.config/powerline/themes/shell"
     state: directory
+    mode: 0750
 
 - name: Create colorschemes directory
   file:
     path: "{{ ansible_env.HOME }}/.config/powerline/colorschemes"
     state: directory
+    mode: 0750
 
 - name: Setup configuration files
   copy:
     src: "{{ item.src }}"
     dest: "{{ ansible_env.HOME }}/.config/powerline/{{ item.dest }}"
+    mode: 0640
   loop:
     - src: colorschemes.json
       dest: colorschemes/default.json
