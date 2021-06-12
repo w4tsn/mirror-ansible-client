@@ -17,6 +17,7 @@ packages:
   - dnf: thefuck
   - dnf: stow
   - dnf: mediawriter
+  - dnf: python3-ansible-lint
 
   # Archives
   - dnf: unzip
