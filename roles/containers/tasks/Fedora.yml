@@ -2,13 +2,12 @@
 
 - name: Install container utilites
   dnf: 
-    name: "{{ item }}"
+    name:
+      - podman
+      - podman-docker
+      - podman-compose
+      - docker-compose
     state: present
-  with_items:
-    - podman
-    - podman-docker
-    - podman-compose
-    - docker-compose
   tags:
     - dnf
     - download
