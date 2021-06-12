@@ -67,6 +67,8 @@ packages:
   - dnf: fontawesome-fonts
   - dnf: fontawesome-fonts-web
   - dnf: xorg-x11-fonts-Type1
+  - dnf: gfs-baskerville-fonts
+  - dnf: adobe-source-code-pro-fonts
 
   # Dictionaries
   - dnf: hunspell-de
