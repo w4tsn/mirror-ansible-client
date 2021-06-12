@@ -1,26 +1,34 @@
-# This file is a template, and might need editing before it works on your project.
-# Official docker image.
-# image: quay.io/sheogorath/build-ah-engine
+---
 
-# f33:
-#   stage: test
-#   tags:
-#     - podman
-#   variables:
-#     GIT_STRATEGY: clone
-#     distro: fedora
-#     distro_version: 33
-#   before_script:
-#     - 'podman pull "docker.io/library/${distro}-${distro_version}"'
-#     - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
-#   script:
-#     - container_id=$(mktemp)
-#     - 'podman run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/:ro "quay.io/sheogorath/ansible-ci-images:${distro}-${distro_version}" > "${container_id}"'
-#     - 'podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml --syntax-check'
-#     - 'podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml'
-#     - podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml | tee ansible.log
-#     - >
-#       grep -q 'changed=0.*failed=0' ansible.log
-#       && (echo 'Idempotence test: pass' && exit 0)
-#       || (echo 'Idempotence test: fail' && exit 1)
-#     - 'podman rm -f "$(cat ${container_id})"'
+.fedora:
+  stage: test
+  tags:
+    - podman
+  variables:
+    GIT_STRATEGY: clone
+    distro: fedora
+    distro_version: 33
+  before_script:
+    - 'podman pull "docker.io/library/${distro}:${distro_version}"'
+    - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
+  script:
+    - container_id=$(mktemp)
+    - 'podman run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/:ro "docker.io/library/${distro}-${distro_version}" > "${container_id}"'
+    - 'podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml --syntax-check'
+    - 'podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml'
+    - podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml | tee ansible.log
+    - >
+      grep -q 'changed=0.*failed=0' ansible.log
+      && (echo 'Idempotence test: pass' && exit 0)
+      || (echo 'Idempotence test: fail' && exit 1)
+    - 'podman rm -f "$(cat ${container_id})"'
+
+f33:
+  extends: .fedora
+  variables:
+    distro_version: 33
+
+f34:
+  extends: .fedora
+  variables:
+    distro_version: 33
