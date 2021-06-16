@@ -1,8 +1,0 @@
----
-# defaults file for nextcloud-client
-
-nextcloud_sync_dir: "$HOME/Nextcloud"
-nextcloud_url: "https://cloud.example.com"
-nextcloud_path: "/"
-nextcloud_user: "$USER"
-nextcloud_autostart: false
