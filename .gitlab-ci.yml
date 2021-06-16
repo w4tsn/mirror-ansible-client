@@ -8,6 +8,7 @@
     distro: fedora
     distro_version: 33
   before_script:
+    - 'sudo dnf install -y podman'
     - 'podman pull "docker.io/library/${distro}:${distro_version}"'
     - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
   script:
