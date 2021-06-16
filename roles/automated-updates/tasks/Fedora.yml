@@ -24,4 +24,3 @@
     - dnf
     - config
   become: true
-
