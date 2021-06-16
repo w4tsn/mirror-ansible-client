@@ -73,6 +73,12 @@
     - src: left_only.json
       dest: themes/shell/left_only.json
 
+- name: Make sure the fonts directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.local/share/fonts"
+    state: directory
+    mode: 0755
+
 - name: Install terminal powerline font
   copy:
     src: "SourceCodeProForPowerline.otf"
