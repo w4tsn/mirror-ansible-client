@@ -1,34 +1,26 @@
 ---
 
 .fedora:
-  image: docker.io/library/fedora:34
+  
   stage: test
   variables:
     GIT_STRATEGY: clone
-    distro: fedora
-    distro_version: 33
   before_script:
-    - 'sudo dnf install -y podman'
-    - 'podman pull "docker.io/library/${distro}:${distro_version}"'
+    - 'sudo dnf install -y git ansible'
     - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
   script:
-    - container_id=$(mktemp)
-    - 'podman run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/:ro "docker.io/library/${distro}-${distro_version}" > "${container_id}"'
-    - 'podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml --syntax-check'
-    - 'podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml'
-    - podman exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/full.yml | tee ansible.log
+    - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v profile-development.yml --syntax-check'
+    - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v profile-development.yml'
+    - env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v profile-development.yml | tee ansible.log
     - >
       grep -q 'changed=0.*failed=0' ansible.log
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
-    - 'podman rm -f "$(cat ${container_id})"'
 
 f33:
   extends: .fedora
-  variables:
-    distro_version: 33
+  image: docker.io/library/fedora:33
 
 f34:
   extends: .fedora
-  variables:
-    distro_version: 33
+  image: docker.io/library/fedora:34
