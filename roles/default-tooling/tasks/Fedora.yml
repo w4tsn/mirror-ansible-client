@@ -36,3 +36,17 @@
     state: latest
   when:
     - ffmpeg28_check is changed
+
+- name: Setup toolbox-powerline in bashrc
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    block: |
+      # Toolbox-Powerline
+      # Load OS information and register variable for powerline
+      # to display special segment if user is within a container
+      source /etc/os-release
+      if [ "$VARIANT_ID" = "container" ]; then
+        export POWERLINE_VIRTUAL_ENV_NAME=toolbox
+      fi
+  tags:
+    - bash

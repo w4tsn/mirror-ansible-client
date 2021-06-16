@@ -12,6 +12,13 @@
                 "priority": 30
             },
             {
+                "function": "powerline.segments.common.env.environment",
+                "args": {
+                    "variable": "POWERLINE_VIRTUAL_ENV_NAME"
+                },
+                "priority": 50
+            },
+            {
                 "function": "powerline.segments.common.env.virtualenv",
                 "priority": 50
             },

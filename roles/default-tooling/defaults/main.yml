@@ -18,6 +18,7 @@ packages:
   - dnf: stow
   - dnf: mediawriter
   - dnf: python3-ansible-lint
+  - dnf: toolbox
 
   # Archives
   - dnf: unzip
