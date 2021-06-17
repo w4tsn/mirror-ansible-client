@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  roles:
+    - gaming-utils
+  vars:
+    rpmfusion_nonfree: true

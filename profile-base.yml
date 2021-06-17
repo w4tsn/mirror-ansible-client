@@ -2,5 +2,3 @@
 
 - import_playbook: base.yml
 - import_playbook: base-extension.yml
-- import_playbook: gnome.yml
-- import_playbook: gaming-nvidia.yml

@@ -1,26 +1,58 @@
 ---
 
 .fedora:
-  
   stage: test
   variables:
     GIT_STRATEGY: clone
+    PLAYBOOK: base.yml
   before_script:
     - 'sudo dnf install -y git ansible'
     - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
   script:
-    - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v profile-development.yml --syntax-check'
-    - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v profile-development.yml'
-    - env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v profile-development.yml | tee ansible.log
+    - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v $PLAYBOOK --syntax-check'
+    - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v $PLAYBOOK'
+    - env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v $PLAYBOOK | tee ansible.log
     - >
       grep -q 'changed=0.*failed=0' ansible.log
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
 
-f33:
+f33-base:
   extends: .fedora
   image: docker.io/library/fedora:33
 
-f34:
+f34-base:
   extends: .fedora
   image: docker.io/library/fedora:34
+
+f33-base-extension:
+  extends: .fedora
+  image: docker.io/library/fedora:33
+  variables:
+    PLAYBOOK: "base.yml base-extension.yml"
+  needs:
+    - f33-base
+
+f34-base-extension:
+  extends: .fedora
+  image: docker.io/library/fedora:34
+  variables:
+    PLAYBOOK: "base.yml base-extension.yml"
+  needs:
+    - f34-base
+
+f33-development:
+  extends: .fedora
+  image: docker.io/library/fedora:33
+  variables:
+    PLAYBOOK: "base.yml development.yml"
+  needs:
+    - f33-base
+
+f34-development:
+  extends: .fedora
+  image: docker.io/library/fedora:34
+  variables:
+    PLAYBOOK: "base.yml development.yml"
+  needs:
+    - f34-base

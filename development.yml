@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  roles:
+    - vscode
+    - atom
+    - development
+    - development-cloud
+    - containers

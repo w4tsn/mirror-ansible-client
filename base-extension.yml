@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  roles:
+    - default-tooling
+    - nextcloud-client
+    - powerline
