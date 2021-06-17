@@ -1,5 +1,9 @@
 ---
 
+stages:
+  - base-test
+  - test
+
 .fedora:
   stage: test
   variables:
@@ -19,10 +23,12 @@
 
 f33-base:
   extends: .fedora
+  stage: base-test
   image: docker.io/library/fedora:33
 
 f34-base:
   extends: .fedora
+  stage: base-test
   image: docker.io/library/fedora:34
 
 f33-base-extension:
