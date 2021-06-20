@@ -10,7 +10,7 @@ stages:
     GIT_STRATEGY: clone
     PLAYBOOK: base.yml
   before_script:
-    - 'sudo dnf install -y git ansible'
+    - 'sudo dnf install -y git ansible unzip'
     - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
   script:
     - 'env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v $PLAYBOOK --syntax-check'
