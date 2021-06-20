@@ -51,7 +51,7 @@ f33-development:
   extends: .fedora
   image: docker.io/library/fedora:33
   variables:
-    PLAYBOOK: "base.yml development.yml"
+    PLAYBOOK: "base.yml gnome.yml development.yml"
   needs:
     - f33-base
 
@@ -59,6 +59,6 @@ f34-development:
   extends: .fedora
   image: docker.io/library/fedora:34
   variables:
-    PLAYBOOK: "base.yml development.yml"
+    PLAYBOOK: "base.yml gnome.yml development.yml"
   needs:
     - f34-base
