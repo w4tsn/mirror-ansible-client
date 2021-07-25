@@ -54,10 +54,12 @@ packages:
   - flatpak: org.kde.kdenlive
   - flatpak: com.obsproject.Studio
   - dnf: vlc
-  - dnf: libaacs
+  - dnf: libaacs # Required for some blurays
+  - dnf: ffmpeg # rpmfusion-free, enables Netflix
 
   # Browsers
   - dnf: firefox
+  - dnf: epiphany
 
   # Passwordsaves
   - dnf: seahorse
