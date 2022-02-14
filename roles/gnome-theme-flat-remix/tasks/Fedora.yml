@@ -1,0 +1,63 @@
+---
+# tasks file for gnome-theme-flat-remix
+#
+
+- name: Install dependencies
+  dnf:
+    name:
+      - gtk-murrine-engine
+      - gnome-themes-extra
+    state: present
+  tags:
+    - dnf
+    - packages
+    - download
+  become: true
+
+- name: Download Flat Remix Theme
+  dnf:
+    name:
+      - adwaita-gtk2-theme
+      - flat-remix-gtk2-theme
+      - flat-remix-gtk3-theme
+      - flat-remix-gtk4-theme
+      - flat-remix-icon-theme
+      - flat-remix-theme
+      - gnome-shell-theme-flat-remix
+    state: present
+  tags:
+    - dnf
+    - packages
+    - download
+  become: true
+
+- name: Set Flat Remix Theme as Application theme
+  dconf:
+    key: "{{ item }}"
+    value: "'Flat-Remix-GTK-Blue-Light-Solid'"
+    state: present
+  with_items:
+    - /org/gnome/desktop/interface/gtk-theme
+  tags:
+    - gnome
+    - themes
+
+- name: Set Flat Remix Theme as Shell theme
+  dconf:
+    key: "{{ item }}"
+    value: "'Flat-Remix-Blue-Light-fullPanel'"
+    state: present
+  with_items:
+    - /org/gnome/shell/extensions/user-theme/name
+  tags:
+    - gnome
+    - themes
+
+- name: Set Flat Remix icon theme
+  dconf:
+    key: /org/gnome/desktop/interface/icon-theme
+    value: "'Flat-Remix-Blue-Light'"
+    state: present
+  tags:
+    - gnome
+    - themes
