@@ -50,3 +50,12 @@
       fi
   tags:
     - bash
+
+- name: Setup starship in config.fish
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.config/fish/config.fish"
+    block: |
+      # Starship Prompt
+      starship init fish | source
+  tags:
+    - fish

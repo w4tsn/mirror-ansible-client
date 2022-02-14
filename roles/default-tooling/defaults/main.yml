@@ -8,7 +8,8 @@ packages:
   - dnf: python3-dnf-plugin-system-upgrade
   - dnf: dnf-plugins-core
   - dnf: util-linux-user
-  - dnf: zsh
+  - dnf: fish
+  - dnf: starship
 
   # Shell utils
   - dnf: vim
