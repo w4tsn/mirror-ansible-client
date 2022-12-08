@@ -5,7 +5,7 @@
 - name: Import GPG key
   rpm_key:
     state: present
-    key: "https://packages.microsoft.com/keys/microsoft.asc"
+    key: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg"
   tags:
     - vscode
     - dnf
@@ -16,20 +16,20 @@
 - name: Add official repository
   yum_repository:
     state: present
-    name: vscode
-    description: Official repository for VSCode
-    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    name: vscodium
+    description: Github repository for VSCodium
+    baseurl: https://download.vscodium.com/rpms/
     gpgcheck: yes
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    gpgkey: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
   tags:
     - vscode
     - dnf
     - gpg-key
   become: true
 
-- name: Install vscode
+- name: Install vscodium
   dnf:
-    name: code
+    name: codium
     state: present
   tags:
     - vscode

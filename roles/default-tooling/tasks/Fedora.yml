@@ -15,6 +15,7 @@
   flatpak: 
     name: "{{ item }}"
     state: present
+    remote: flathub-full
   with_items: "{{ packages | union(extended_packages | default([])) | selectattr('flatpak', 'defined') | map(attribute='flatpak') | list }}"
   tags:
     - flatpak
@@ -51,11 +52,3 @@
   tags:
     - bash
 
-- name: Setup starship in config.fish
-  blockinfile:
-    path: "{{ ansible_env.HOME }}/.config/fish/config.fish"
-    block: |
-      # Starship Prompt
-      starship init fish | source
-  tags:
-    - fish

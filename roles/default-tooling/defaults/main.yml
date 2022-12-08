@@ -9,7 +9,6 @@ packages:
   - dnf: dnf-plugins-core
   - dnf: util-linux-user
   - dnf: fish
-  - dnf: starship
 
   # Shell utils
   - dnf: vim
@@ -49,7 +48,7 @@ packages:
   - dnf: darktable
   - dnf: inkscape
   - dnf: inkscape-psd
-  - flatpak: com.jgraph.drawio
+  - flatpak: com.jgraph.drawio.desktop
   - dnf: audacity
   - dnf: calibre
   - flatpak: org.kde.kdenlive

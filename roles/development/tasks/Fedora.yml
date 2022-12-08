@@ -19,6 +19,7 @@
 - name: Install development utilities (flatpak)
   flatpak:
     name: "{{ item }}"
+    remote: flathub-full
   with_items:
     - com.github.alecaddd.sequeler
     - com.getpostman.Postman
