@@ -30,6 +30,7 @@ packages:
   - dnf: thunderbird
   - dnf: thunderbird-wayland
   - flatpak: org.onlyoffice.desktopeditors
+  - flatpak: net.cozic.joplin_desktop
 
   # Security
   - dnf: yubikey-manager
