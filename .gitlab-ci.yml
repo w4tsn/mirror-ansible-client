@@ -22,44 +22,44 @@ stages:
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
 
-f33-base:
+f36-base:
   extends: .fedora
   stage: base-test
-  image: docker.io/library/fedora:33
+  image: docker.io/library/fedora:36
 
-f34-base:
+f37-base:
   extends: .fedora
   stage: base-test
-  image: docker.io/library/fedora:34
+  image: docker.io/library/fedora:37
 
-f33-base-extension:
+f36-base-extension:
   extends: .fedora
-  image: docker.io/library/fedora:33
+  image: docker.io/library/fedora:36
   variables:
     PLAYBOOK: "base.yml base-extension.yml"
   needs:
-    - f33-base
+    - f36-base
 
-f34-base-extension:
+f37-base-extension:
   extends: .fedora
-  image: docker.io/library/fedora:34
+  image: docker.io/library/fedora:37
   variables:
     PLAYBOOK: "base.yml base-extension.yml"
   needs:
-    - f34-base
+    - f37-base
 
-f33-development:
+f36-development:
   extends: .fedora
-  image: docker.io/library/fedora:33
+  image: docker.io/library/fedora:36
   variables:
     PLAYBOOK: "base.yml gnome.yml development.yml"
   needs:
-    - f33-base
+    - f36-base
 
-f34-development:
+f37-development:
   extends: .fedora
-  image: docker.io/library/fedora:34
+  image: docker.io/library/fedora:37
   variables:
     PLAYBOOK: "base.yml gnome.yml development.yml"
   needs:
-    - f34-base
+    - f37-base
