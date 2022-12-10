@@ -34,6 +34,7 @@ packages:
 
   # Security
   - dnf: yubikey-manager
+  - flatpak: com.yubico.yubioath
 
   # Communication
   - dnf: telegram-desktop
