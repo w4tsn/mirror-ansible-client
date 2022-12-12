@@ -1,0 +1,13 @@
+---
+
+- name: Install system base packages
+  ansible.builtin.dnf: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - sshd
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
