@@ -10,22 +10,39 @@
   loop_control:
     loop_var: distro_file
 
-- name: Setup Tilix in bashrc
-  blockinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    block: |
-      # Tilix
-      if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-              source /etc/profile.d/vte.sh
-      fi
+- name: Setup .bashrc configs
+  block:
+  - name: Setup Tilix in bashrc
+    blockinfile:
+      path: "{{ ansible_env.HOME }}/.bashrc"
+      block: |
+        # Tilix
+        if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+            source /etc/profile.d/vte.sh
+        fi
+  - name: Setup thefuck in bashrc
+    blockinfile:
+      path: "{{ ansible_env.HOME }}/.bashrc"
+      block: |
+        # thefuck
+        eval $(thefuck --alias)
   tags:
     - bash
 
-- name: Setup thefuck in bashrc
-  blockinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    block: |
-      # thefuck
-      eval $(thefuck --alias)
+- name: Setup fish config
+  block:
+  - name: Create fish config directory
+    file:
+      path: "{{ ansible_env.HOME }}/.config/fish"
+      state: directory
+  - name: Ensure config.fish present
+    file:
+      path: "{{ ansible_env.HOME }}/.config/fish/config.fish"
+      state: present
+  - name: Setup thefuck in config.fish
+    blockinfile:
+      path: "{{ ansible_env.HOME }}/.config/fish/config.fish"
+      block: |
+        thefuck --alias | source
   tags:
-    - bash
+    - fish
