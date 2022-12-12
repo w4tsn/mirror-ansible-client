@@ -1,0 +1,46 @@
+---
+
+- name: Install gstreamer1 plugins
+  ansible.builtin.dnf: 
+    name: "{{ item }}"
+    state: present
+    exclude: gstreamer1-plugins-bad-free-devel
+  with_items:
+    - gstreamer1-plugin-libav
+    - gstreamer1-plugin-openh264
+    - gstreamer1-plugins-bad-free-extras
+    - gstreamer1-plugins-bad-free-fluidsynth
+    - gstreamer1-plugins-bad-free-wildmidi
+    - gstreamer1-plugins-bad-free-zbar
+    - gstreamer1-plugins-bad-freeworld
+    - gstreamer1-plugins-good-extras
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Install LAME
+  dnf: 
+    name: "{{ item }}"
+    state: present
+    exclude: lame-devel
+  with_items:
+    - 'lame'
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Install 
+  dnf: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - '@Multimedia'
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
