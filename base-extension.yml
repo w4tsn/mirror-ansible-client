@@ -4,4 +4,3 @@
   roles:
     - default-tooling
     - nextcloud-client
-    - powerline
