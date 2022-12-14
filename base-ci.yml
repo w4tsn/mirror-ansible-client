@@ -1,0 +1,11 @@
+---
+
+# base playbook without ssh_hardening as it would fail in CI
+
+- hosts: localhost
+  roles:
+    - sys-upgrade
+    - rpmfusion
+    - hardware
+    - flathub
+    - automated-updates

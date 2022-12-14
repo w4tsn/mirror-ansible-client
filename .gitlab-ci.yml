@@ -1,14 +1,13 @@
 ---
 
 stages:
-  - base-test
   - test
 
 .fedora:
   stage: test
   variables:
     GIT_STRATEGY: clone
-    PLAYBOOK: base.yml
+    PLAYBOOK: base-ci.yml
   before_script:
     - 'sudo dnf install -y git ansible unzip'
     - 'sed -i "s/^become_ask_pass = .*/become_ask_pass = False/" ansible.cfg'
@@ -24,42 +23,44 @@ stages:
 
 f36-base:
   extends: .fedora
-  stage: base-test
   image: docker.io/library/fedora:36
 
 f37-base:
   extends: .fedora
-  stage: base-test
   image: docker.io/library/fedora:37
 
 f36-base-extension:
-  extends: .fedora
-  image: docker.io/library/fedora:36
+  extends:
+    - .fedora
+    - f36-base
   variables:
-    PLAYBOOK: "base.yml base-extension.yml"
+    PLAYBOOK: "base-ci.yml base-extension.yml"
   needs:
     - f36-base
 
 f37-base-extension:
-  extends: .fedora
-  image: docker.io/library/fedora:37
+  extends:
+    - .fedora
+    - f37-base
   variables:
-    PLAYBOOK: "base.yml base-extension.yml"
+    PLAYBOOK: "base-ci.yml base-extension.yml"
   needs:
     - f37-base
 
 f36-development:
-  extends: .fedora
-  image: docker.io/library/fedora:36
+  extends:
+    - .fedora
+    - f36-base
   variables:
-    PLAYBOOK: "base.yml gnome.yml development.yml"
+    PLAYBOOK: "base-ci.yml gnome.yml development.yml"
   needs:
     - f36-base
 
 f37-development:
-  extends: .fedora
-  image: docker.io/library/fedora:37
+  extends:
+    - .fedora
+    - f37-base
   variables:
-    PLAYBOOK: "base.yml gnome.yml development.yml"
+    PLAYBOOK: "base-ci.yml gnome.yml development.yml"
   needs:
     - f37-base
