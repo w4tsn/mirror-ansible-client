@@ -5,7 +5,6 @@
     - devsec.hardening
   roles:
     - sys-upgrade
-    - sys-packages
     - role: ssh_hardening
       become: true
     - rpmfusion
