@@ -58,8 +58,11 @@ packages:
   - flatpak: org.kde.kdenlive
   - flatpak: com.obsproject.Studio
   - dnf: vlc
+  - dnf: libavcodec-free
   - dnf: libaacs # Required for some blurays
-  - dnf: ffmpeg # rpmfusion-free, enables Netflix
+  - dnf: libavcodec-freeworld # rpmfusion-free, enables Netflix
+  - dnf: x265 # rpmfusion-free
+  - dnf: ffmpeg-free
 
   # Browsers
   - dnf: firefox
