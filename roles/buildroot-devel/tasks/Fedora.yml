@@ -1,0 +1,58 @@
+---
+
+# According to http://buildroot.org/downloads/manual/manual.html#requirement-mandatory
+- name: Install mandatory packages
+  ansible.builtin.dnf: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "@C Development Tools and Libraries"
+    - "@Development Tools"
+    - which
+    - sed
+    - make
+    - binutils
+    - diffutils
+    - gcc
+    - g++
+    - bash
+    - patch
+    - gzip
+    - bzip2
+    - perl
+    - tar
+    - cpio
+    - unzip
+    - rsync
+    - file
+    - bc
+    - findutils
+    - wget
+    - expect
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
+
+- name: Install optional packages
+  ansible.builtin.dnf: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ncurses-libs
+    - qt5-devel
+    - glib2, gtk2, glade2
+    - cvs
+    - git
+    - mercurial
+    - rsync
+    - subversion
+    - graphviz
+    - python3-matplotlib
+    - ccache
+  tags:
+    - dnf
+    - download
+    - packages
+  become: true
